@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar{
+background-color: #FDFCDC;
+}
+
+.navbar strong:hover {
+    color: white!important;
+  }
+
+.box-two{
+    background-image: url("images/pool.jpg");
+}
+.box-three{
+    background-image: url("images/gymeqpui.jpg");
+}
+.box-four{
+    background-image: url("images/yogaclass.jpg");
+}
+.box-five{
+    background-image: url("images/sauna.jpg");
+}
+
+.container{
+
+}
+.slide-show-render-full .slide-image {
+    height: 100%;
+    max-height: 150px;
+    max-width: 1100px;
+}
+
+.slide-show-render-full .slide-content {
+    height: 150px;
+    width: 1100px;
+}
+
+.slide-show-render .slides {
+    height: 150px;
+}
+
+.slide-show-render.slide-show {
+height: 150px;
+margin: 0 0 20px -60px;
+}
+
+.slide-show {
+width: 1100px;
+}
+
+.reveal-text-on-image {
+  width: 200px;
+  height: 200px;
+  margin: 8px;
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  border: 1px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-text-on-image:before,
+.reveal-text-on-image:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: inherit;
+  transition: 0.3s;
+}
+
+.reveal-text-on-image:after {
+  background: #fff;
+  transform: translateY(100%);
+  content: attr(data-text);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.reveal-text-on-image:hover:before {
+  transform: translateY(-50%); /*try different values*/
+}
+
+.reveal-text-on-image.slide-down:after {
+  transform: translateY(-100%);
+}
+.reveal-text-on-image.slide-down:hover:before {
+  transform: translateY(50%); /*try different values*/
+}
+
+.reveal-text-on-image.slide-left:after {
+  transform: translate(100%, 0);
+}
+.reveal-text-on-image.slide-left:hover:before {
+  transform: translate(-50%, 0); /*try different values*/
+}
+
+.reveal-text-on-image.slide-right:after {
+  transform: translate(-100%, 0);
+}
+.reveal-text-on-image.slide-right:hover:before {
+  transform: translate(50%, 0); /*try different values*/
+}
+
+.reveal-text-on-image:hover:after {
+  transform: translateY(0);
+  box-shadow: 0 0 0 200px rgba(0, 0, 0, 0.5);
+}

@@ -1,10 +1,201 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{{ url_for('templates', filename='home.html') }}
+
+{% block title %}Home{% endblock %}
+
+{% block body_content %}
+<div >
+        <hr>
+        <!-- carousel -->
+          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="static/images/water_aerobics_carousel.jpeg" class="d-block w-100" alt="water aerobics class">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1>New classes available</h1>
+                  <p>Try our new water aerobics class and meet our new instructor Tim Tomboy.</p>
+                  <div class="slider-btn">
+                      <button class="btn btn-1">Click here</button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="static/images/hand_sanitiser.jpg" class="d-block w-100" alt="hand sanitiser">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1>Deep cleaning</h1>
+                  <p>Our centre maintains the highest standard of hygiene to ensure we are Covid-Secure.</p>
+                  <div class="slider-btn">
+                    <button class="btn btn-1">Click here</button>
+
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="static/images/young_gym_members.jpeg" class="d-block w-100" alt="Student members">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1>20% off Gold membership for full-time students</h1>
+                  <p>Our offer won't last long! Why not take out new membership or upgrade now?</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <div class="container">
+
+            </div>
+          </div>
+    </div>
+    <!-- About Us -->
+
+    <div class="flex-container flex-column justify-content-end align-items-centre" style="background-color:#00AFB9; color:#FDFCDC">
+        <div class="box-one">
+            <h2 class="h-2" style="background-color:#F07167;padding-top: 15px;
+                padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">Everybody is welcome at the UK's favourite fitness centre</h2>
+            <br>
+                From flexible memberships and 24 hour opening times, to quality fitness equipment, studios and classes included,
+                there are loads of reasons why Pure Fitness is the UK's favourite Fitness Centre. Our mission is to help people
+                everywhere to lead a healthy and happy life, every day. Come and join us today.
+            </div>
+        <br>
+    </div>
+    <br>
+
+    <!-- Facilities -->
+    <div class="container">
+         <div class="row">
+             <h3 class="col">Join us to enjoy these amazing facilities!</h3></div>
+
+         <div class="row" >
+            <div class="col-md-3 box-two reveal-text-on-image" data-text="Swim in our beautiful 30m pool and viewing gallery is the perfect place to come and swim.">
+            </div>
+
+            <div class=" col-md-3 box-three reveal-text-on-image" data-text="Spread over three floors, our gym features cardio equipment to choose from, including a new TRX system.">
+            </div>
+
+            <div class="col-md-3 box-four reveal-text-on-image" data-text="Our group fitness studio plays host to a variety of different classes. Find the right class for you and you can meet new people too.">
+            </div>
+
+            <div class="col-md-3 box-five reveal-text-on-image" data-text="Come and relax, unwind and refresh yourself in our health suite, whether that’s after a workout, or just a hard day at work">
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="flex-container">
+        <p class="p-2" style="background-color:#FED9B7;">
+        <div class="row" style="background-color:#FDFCDC;">
+            <div class="col-md-4 box-six">
+                <h2>Bronze Membership</h2>
+                    <p>Limited access to:</p>
+                    <ul>
+                        <li>Gym</li>
+                        <li>Swimming pools</li>
+                        <br>
+                            <p>Price: £20pm excluding £10 joining fee</p>
+                            <p>(cancellation fee £20)</p>
+                    </ul>
+
+            </div>
+            <div class=" col-md-4 box-seven">
+                <h2>Silver Membership</h2>
+                    <p>Limited access to:</p>
+                        <ul>
+                            <li>Gym</li>
+                            <li>Swimming pools</li>
+                            <li>2 classes of your choice</li>
+                            <li>Bring a guest 1 x a month</li>
+                            <li>Book classes 5 days in advance</li>
+                                <br>
+                                <p>Price: £40pm excluding £10 joining fee</p>
+                        </ul>
+            </div>
+            <div class="col-md-4 box-eight">
+                <h2>Gold Membership</h2>
+                <p>Access to:</p>
+                        <ul>
+                            <li>To all classes</li>
+                            <li>Sauna/Steam room</li>
+                            <li>Bring a guest 4 x a month</li>
+                            <li>Freeze subscription</li>
+                            <li>Free cancellation anytime</li>
+                            <li>Exclusive access 14 days in advance</li>
+                            <li>Personal trainer</li>
+                             <br>
+                            <p>Price: £75pm, no joining fee</p>
+                        </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- covid-secure -->
+
+    <div class="d-inline-flex flex-column justify-content-start align-items-centre" style="background-color:#00AFB9; color:#FDFCDC;">
+        <div class="box-ten">
+                <h2 class="h-2" style="background-color:#F07167;padding-top: 15px;
+                    padding-right: 15px; padding-bottom: 15px; padding-left: 15px;"><img src='static/images/covid_secure_icon.png'
+                    alt="Covid-friendly" width="75" class="d-inline-block" style="border-radius: 50px 50px 50px 50px;">  Covid-Secure</h2>
+
+                        <p>It's what we've been waiting for and we're so excited to see you back in the centre soon.</p>
+                        <p>Our areas are Covid-19 secure and we're cleaning around the clock to make sure that you feel safe when you work out.</p>
+        </div>
+
+
+
+    <div class="d-inline-flex flex-column justify-content-start align-items-centre" style="background-color:#00AFB9; color:#FDFCDC;">
+        <div class="box-ten">
+                <h2 class="h-2" style="background-color:#F07167;padding-top: 15px;
+                    padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">Why do our customers love our centre?</h2>
+
+                        <p>"As a long-term gym user, I rate this gym very, very highly! The friendly front-desk staff helped me to find my way around the gym. The new Assault
+                            bike has taken my workouts to a new level (with the support videos to help me to use this equipment).</p>
+                            <p>I cannot thank the staff enough for their friendliness and support.
+                            The cleanliness of the centre is of a high standard, I feel safe using the facilities” - The Rock</p>
+                            <img src='static/images/dwayne_johnson.jpg' alt="The Rock" width="150" class="d-inline-block" style="border-radius: 50px 50px 50px 50px;">
+        </div>
+
+        <div class="card mb-3 bg-secondary" style="max-width:540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="static/images/dwayne_johnson.jpg" style="max-width:100% " height="400vh"alt="dwayne-johnson">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">A Word From Dwayne</h5>
+                  <p class="card-text text-white">"As a long-term gym user, I rate this gym very, very highly! The friendly front-desk staff helped me to find my way around the gym. The new Assault
+                    bike has taken my workouts to a new level (with the support videos to help me to use this equipment).</p>
+                    <p class="card-text text-white">I cannot thank the staff enough for their friendliness and support.
+                    The cleanliness of the centre is of a high standard, I feel safe using the facilities” - The Rock</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <br>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+        </body>
+
+{% endblock %}
