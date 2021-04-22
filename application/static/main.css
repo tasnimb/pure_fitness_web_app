@@ -56,8 +56,6 @@ background-color: rgba(0, 136, 169, 0.8);
 
 }
 
-
-
 header {
 display: flex;
 justify-content: space-between;
@@ -108,7 +106,7 @@ margin: auto;
 }
 
 .quick-links ul {
-display-flex;
+display: flex;
 }
 
 .quick-items{
@@ -133,6 +131,8 @@ text-align: center;
 font-size: 18px;
 
 }
+
+
 
 .navbar{
 background-color: #FDFCDC;
