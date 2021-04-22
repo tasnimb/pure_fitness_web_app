@@ -20,6 +20,7 @@ text-decoration: none;
 
 .logo {
 cursor: pointer;
+margin-right:auto;
 
 }
 
@@ -133,10 +134,12 @@ font-size: 18px;
 
 }
 
-
+header{width:100%;}
 
 .navbar{
 background-color: #FDFCDC;
+width:100%;
+
 }
 
 .navbar-brand{color:black;
