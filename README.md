@@ -1,6 +1,6 @@
 # **SKY GET INTO TECH FINAL TEAM** PROJECT
 
-### **Fitness Centre Web Applicationt**
+### **Fitness Centre Web Application**
 
 **Team Members** 
 * Asia Sharif 
