@@ -1,7 +1,158 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
-*{
-    font-family: 'Poppins', sans-serif;
+
+body{background-color:rgba(0, 136, 169, 0.5);
+font-family: 'Montserrat', sans-serif;
+
 }
+/*body end*/
+
+/*headings starts*/
+h1,h2,h3,h4,h5{
+font-weight:500;
+color:#fff;
+
+}
+
+/*headings end*/
+
+
+/*navbar toggler start*/
+.navbar-toggler{background-color: rgba(0, 136, 169, 1);
+border:none;
+padding:10px 6px;
+outline:none;}
+
+.navbar-toggler:hover{
+background-color: rgba(0, 136, 169, 0.8);
+}
+
+.navbar-toggler span{
+    display:block;
+    width:18px;
+    margin-left: 10px;
+    margin-right:10px;
+    height:2px;
+    border:1px;
+    background:#fff;
+}
+
+.navbar-toggler span + span{
+    margin-top:4px;
+    width:18px;
+    margin-left:10px;
+    margin-right:10px;
+
+}
+
+.navbar-toggler span + span + span{
+
+    width:18px;
+    margin-left:10px;
+    margin-right:10px
+
+}
+
+/*navbar toggler end*/
+
+/*login button start*/
+.btn{
+margin-left: 20px;
+padding: 9px 25px;
+background-color: rgba(0, 136, 169, 1);
+border: none;
+border-radius: 50px;
+cursor:pointer;
+transition: all 0.3s ease 0s;
+}
+
+.btn:hover {
+background-color: rgba(0, 136, 169, 0.8);
+
+
+}
+
+/*login button end*/
+
+/*navbar and links start*/
+.navbar{
+background-color: #24252A};
+
+.navbar-toggler span + span + span{
+
+    width:18px;
+    margin-left:10px;
+    margin-right:10px
+
+}
+
+.navbar-expand-lg .navbar-nav .nav-link{
+    font-weight:500
+    font-size:16px;
+    position:relative;
+    color:#ECF0F1;
+    text-decoration: none;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover{
+    border-top: 2px solid rgba(0, 136, 169, 0.8);
+    color:#ECF0F1;
+    font-size: 18px;
+}
+.navbar-expand-lg .navbar-nav .nav-link:active{
+    border-top:2px solid rgba(0, 136, 169, 0.8);
+   color:rgba(0, 136, 169, 0.8);
+   font-size:18px;
+}
+
+.navbar .navbar-brand{
+text-decoration:none;
+color:rgba(0, 136, 169, 1);
+font-size:24px;
+}
+
+.nav-item{margin-right: 20px;}
+
+/*navbar and links end*/
+
+/*footer start*/
+
+
+
+.footer-item,.social-items{
+list-style:none;
+display:inline-block;
+
+}
+
+.footer li a{
+text-decoration:none;
+color:#fff;
+margin-left:20px;
+margin-right:20px;
+}
+
+.outer-footer{
+display:flex;
+padding: 10px;
+text-align: center;
+font-size: 10px;
+color:#fff;
+
+}
+
+
+/*carousel start*/
+
+.carousel-inner carousel-item{
+height:70vh;
+
+background-size:cover;
+}
+/*carousel end*/
+
+
+
+/*facilities*/
 
 .box-two{
     background-image: url("images/pool.jpg");
@@ -16,44 +167,18 @@
     background-image: url("images/sauna.jpg");
 }
 
-.container{
-
-}
-.slide-show-render-full .slide-image {
-    height: 100%;
-    max-height: 150px;
-    max-width: 1100px;
-}
-
-.slide-show-render-full .slide-content {
-    height: 150px;
-    width: 1100px;
-}
-
-.slide-show-render .slides {
-    height: 150px;
-}
-
-.slide-show-render.slide-show {
-height: 150px;
-margin: 0 0 20px -60px;
-}
-
-.slide-show {
-width: 1100px;
-}
-
 .reveal-text-on-image {
-  width: 200px;
-  height: 200px;
-  margin: 8px;
+  width: 300px;
+  height: 300px;
+  margin: 10px 10px 10px 10px;
   display: flex;
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
-  border: 1px solid #000;
+  border-radius: 10%;
+  border: 1px transparent;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 40px 20px rgba(0,0,0,0.5);
 }
 
 .reveal-text-on-image:before,
@@ -69,47 +194,47 @@ width: 1100px;
 }
 
 .reveal-text-on-image:after {
-  background: #fff;
+  background:rgba(0, 136, 169, 0.9);
   transform: translateY(100%);
   content: attr(data-text);
   padding: 8px;
   display: flex;
   align-items: center;
   text-align: center;
+  color:#fff;
 }
 
 .reveal-text-on-image:hover:before {
-  transform: translateY(-50%); /*try different values*/
+  transform: translateY(-50%);
 }
 
 .reveal-text-on-image.slide-down:after {
   transform: translateY(-100%);
 }
 .reveal-text-on-image.slide-down:hover:before {
-  transform: translateY(50%); /*try different values*/
+  transform: translateY(50%);
 }
 
 .reveal-text-on-image.slide-left:after {
   transform: translate(100%, 0);
 }
 .reveal-text-on-image.slide-left:hover:before {
-  transform: translate(-50%, 0); /*try different values*/
+  transform: translate(-50%, 0);
 }
 
 .reveal-text-on-image.slide-right:after {
   transform: translate(-100%, 0);
 }
 .reveal-text-on-image.slide-right:hover:before {
-  transform: translate(50%, 0); /*try different values*/
+  transform: translate(50%, 0);
 }
 
 .reveal-text-on-image:hover:after {
   transform: translateY(0);
   box-shadow: 0 0 0 200px rgba(0, 0, 0, 0.5);
 }
-
 #LOGIN/REG CSS
-
+/*
 html, body {
   height: 100%;
 }
@@ -120,7 +245,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: white;
-}
+}*/
 
 .form-signin {
   width: 100%;
