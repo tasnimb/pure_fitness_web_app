@@ -2,7 +2,12 @@
 
 ### **Fitness Centre Web Application Project**
 
-**Team Members**: Asia Sharif , Dumisile Mbuthuma, Faridah Dada, Michelle Mistry and Tasnim Begum 
+**Team Members**: 
+* Asia Sharif 
+* Dumisile Mbuthuma
+* Faridah Dada
+* Michelle Mistry
+* Tasnim Begum 
 
 **Application directory**
 
