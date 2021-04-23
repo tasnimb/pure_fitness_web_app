@@ -1,8 +1,8 @@
 # **SKY GET INTO TECH FINAL TEAM** PROJECT
 
-### **Fitness Centre Web Application Project**
+### **Fitness Centre Web Applicationt**
 
-**Team Members**: 
+**Team Members** 
 * Asia Sharif 
 * Dumisile Mbuthuma
 * Faridah Dada
