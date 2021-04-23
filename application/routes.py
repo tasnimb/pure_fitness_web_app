@@ -1,15 +1,18 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 from application.forms import LoginForm
-# from application import app
+from application import app
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
+
+
 
 
 @app.route('/')
 # @app.route('/home')
 def home():
     return render_template('home.html', title='Home')
+
+def openLogin():
+    return redirect(url_for('login'))
 
 @app.route('/book')
 def book():
@@ -52,6 +55,3 @@ def register():
 
 
 
-
-if __name__== "__main__":
-    app.run(debug=True)

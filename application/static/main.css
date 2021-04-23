@@ -248,7 +248,7 @@ body {
 }*/
 
 .form-signin {
-  width: 100%;
+  width: 50%;
   max-width: 330px;
   padding: 15px;
   margin: auto;
@@ -278,8 +278,9 @@ body {
 
 }
 
-.w-100 btn btn-lg btn-primary {
+.w-20 btn btn-lg btn-primary {
 color: rgb(0,129,167);
+height: 20px;
 }
 
 label {
