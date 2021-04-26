@@ -33,6 +33,14 @@ class Postcode(db.Model):
     __tablename__ = 'Postcode'
     postcode_id=db.Column(db.Integer,primary_key=True)
     postcode=db.Column(db.String(8))
+
+class CustomerLogin(db.Model):
+    __tablename__ = 'Customer Login'
+    customerlogin_id = db.Column(db.Integer,primary_key=True)
+    email_address = db.Column(db.String(50), db.ForeignKey('CustomerContact.email_address.id'))
+    password = db.Column(db.String(8))
+
+
 #
 # class SessionTimetable(db.Model):
 #     __tablename__ = 'Session Time Table'
@@ -57,5 +65,3 @@ class Postcode(db.Model):
 #     booking_id = db.Column(db.Integer, primary_key=True)
 #     customer_id = db.Column(db.Integer, db.ForeignKey('CustomerContacts.customer_id'))
 #     session_time_id = db.Column(db.Integer, db.ForeignKey('SessionTimetable.session_time_id'))
-
-
