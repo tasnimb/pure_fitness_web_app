@@ -21,8 +21,7 @@
                   <h1>New classes available</h1>
                   <p>Try our new water aerobics class and meet our new instructor Tim Tomboy.</p>
                   <div class="slider-btn">
-                      <button class="btn btn-1">Click here</button>
-
+                      <button class="btn btn-1" onClick="location.href='{{ url_for('book') }}';">Click here</button>
                   </div>
                 </div>
               </div>
@@ -32,8 +31,6 @@
                   <h1>Deep cleaning</h1>
                   <p>Our centre maintains the highest standard of hygiene to ensure we are Covid-Secure.</p>
                   <div class="slider-btn">
-                    <button class="btn btn-1">Click here</button>
-
                   </div>
                 </div>
               </div>
@@ -42,6 +39,8 @@
                 <div class="carousel-caption mb-5 d-md-block">
                   <h1>20% off Gold membership for full-time students</h1>
                   <p>Our offer won't last long! Why not take out new membership or upgrade now?</p>
+                  <div class="slider-btn">
+                    <button class="btn btn-1" onClick="location.href='{{ url_for('login') }}';">Click here</button>
                 </div>
               </div>
             </div>
@@ -107,7 +106,7 @@
         <p class="p-2" style="background-color:#FED9B7;">
         <div class="row" style="background-color:#FDFCDC;">
             <div class="col-md-4 box-six">
-                <h2>Bronze Membership</h2>
+                <h2 style="color:#0081A7;">Bronze Membership</h2>
                     <p>Limited access to:</p>
                     <ul>
                         <li>Gym</li>
@@ -119,7 +118,7 @@
 
             </div>
             <div class=" col-md-4 box-seven">
-                <h2>Silver Membership</h2>
+                <h2 style="color:#0081A7;">Silver Membership</h2>
                     <p>Limited access to:</p>
                         <ul>
                             <li>Gym</li>
@@ -132,7 +131,7 @@
                         </ul>
             </div>
             <div class="col-md-4 box-eight">
-                <h2>Gold Membership</h2>
+                <h2 style="color:#0081A7;">Gold Membership</h2>
                 <p>Access to:</p>
                         <ul>
                             <li>To all classes</li>

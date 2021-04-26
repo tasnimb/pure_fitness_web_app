@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from application.forms import LoginForm, RegistrationForm
 from application import app, db
-from application.models import CustomerContact, CustomerName, Postcode, City, CustomerLogin
+from application.models import CustomerContact, CustomerName, Postcode, City, CustomerLogin, Activity
 
 
 @app.route('/')
@@ -14,19 +14,9 @@ def openLogin():
     return redirect(url_for('login'))
 
 
-@app.route('/book')
-def book():
-    return render_template('booking.html', title='Book')
-
-
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title='Contact')
-
-
-@app.route('/policies')
-def policies():
-    return render_template('policy.html', title='policies')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -61,11 +51,27 @@ def register():
     return render_template('register.html', form=form)
 
 
-@app.route('/policy')
-def policy():
-    return render_template('policy.html', title='policy')
-
-
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html', title='dashboard')
+
+
+@app.route('/book', methods=['GET'])
+def book():
+    activities = db.session.query(Activity).all()
+    return render_template('activities.html', title='Book', activities=activities)
+
+
+@app.route('/booking')
+def booking():
+    return render_template('booking.html', title='booking')
+
+
+@app.route('/my_bookings')
+def my_bookings():
+    return render_template('my_bookings.html', title='my_bookings')
+
+
+@app.route('/policy')
+def policy():
+    return render_template('policy.html', title='policy')

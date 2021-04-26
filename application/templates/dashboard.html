@@ -5,5 +5,17 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block body_content %}
+<h2>Book a Class</h2>
+<br>
+    <a href="{{ url_for('booking') }}">
+   <button>Book</button>
+</a>
+
+<h2>My bookings</h2>
+<br>
+    <a href="{{ url_for('my_bookings') }}">
+   <button>My Bookings</button>
+</a>
+
 
 {% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{{ url_for('templates', filename='my_bookings.html') }}
+
+{% block title %}MyBookings{% endblock %}
+
+{% block body_content %}
+<br>
+<br>
+<br>
+<br>
+<h1>My Bookings</h1>
+<h2>Current bookings</h2>
+<p>Your current bookings are shown in the table below. </p>
+<table>
+  <thead>
+    <tr>
+        <th>Date</th>
+        <th>Session name</th>
+        <th>Instructor</th>
+    </tr>
+    </thead>
+    <tbody>
+     {% for row in session  %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h2>Past bookings</h2>
+<p>The table below displays the previous classes you have attended.</p>
+<table>
+  <thead>
+    <tr>
+        <th>Date</th>
+        <th>Session name</th>
+        <th>Instructor</th>
+    </tr>
+    </thead>
+    <tbody>
+     {% for row in session  %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<br>
+    <a href="{{ url_for('booking') }}">
+   <button>Book</button>
+</a>
+<div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{{ url_for('dashboard') }}">Dashboard</a>
+        </small>
+</div>
+
+{% endblock %}

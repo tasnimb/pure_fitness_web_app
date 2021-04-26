@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateField, SelectField, HiddenField
+from wtforms.validators import DataRequired, InputRequired, Length, Email, EqualTo
 
 
 gender = ('Female', 'Male')
+
 
 class RegistrationForm(FlaskForm):
     first_name = StringField('firstname',validators=[DataRequired(), Length(min=2, max=20)])
@@ -19,9 +20,21 @@ class RegistrationForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
+
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     Login = SubmitField('Login')
 
+
+class BookActivity(FlaskForm):
+    booking_id = HiddenField()
+    email = StringField('Email', validators=[InputRequired(), Length(min=6, max=35)])
+    date = DateField('Class Date')
+    activity = SelectField('Class', validators=[InputRequired()], choices=[('Strength', 'Strength'), ('Cardio', 'Cardio'),
+                                        ('Mind and Body', 'Mind and Body'), ('Cycling', 'Cycling'), ('Swim', 'Swim')])
+    activity_time = SelectField('Time of Day', validators=[InputRequired()], choices=[('1', 'Morning'),
+                                                                    ('2', 'Afternoon'), ('3', 'Evening')])
+    activity_timeslot = SelectField('Timeslot', validators=[InputRequired()], choices=[])
+    Book = SubmitField('Book a Class')

@@ -1,13 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{{ url_for('templates', filename='book.html') }}
 
-<!--when a user click book from the nav bar, they will be asked to login, they they will be taken to their dashboard
-where there will be an option to book, after which, they will see this page.-->
+{% block title %}Book{% endblock %}
+
+{% block body_content %}
+<br><br><br>
+<div class='form'>
+
+        <form action="" method="post">
+            <dl>
+                <dt>Book an Activity</dt>
+                <dd>
+                    {{ form.hidden_tag() }}
+                    {% for error in form.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+
+                    {{ form.date.label() }} {{ form.date(type='date') }}
+                    <br>
+
+                    {% for activity_type in Activity  %}
+
+                    {{ form.Activity.label() }} {{ form.activity_type.data }}
+
+                    {% endfor %}
+
+                    <br>
+                    {% for activity_time in ActivityTime  %}
+
+                    {{ form.Time.label() }} {{ form.activity_time.data }}
+
+                    {% endfor %}
+                    <br>
+
+                    {% for activity_timeslot in ActivityTimeslot  %}
+
+                    {{ form.Timeslot.label() }} {{ form.Timeslot.data }}
+
+                    {% endfor %}
+                    <br>
+
+                    {{ form.submit(class=" btn btn-primary") }}
+                    {{ message }}
+                </dd>
+            </dl>
+            <p><input type=submit value=Book>
+
+        </form>
+
+    </div>
+
+{% endblock %}
