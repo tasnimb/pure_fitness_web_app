@@ -21,13 +21,12 @@ def contact():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # error = ""
-    # form = LoginForm()
+    error = ""
+    form = LoginForm()
     # if form.validate_on_submit()
     # user = CustomerLogin.query.get(form.email_address.data)
     #     if user:
     #         if password(user.password, form.password.data):
-    #             user.authenticated
 
     if request.method == "POST" and form.validate():
         email = form.email.data
