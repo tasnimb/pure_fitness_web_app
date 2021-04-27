@@ -10,6 +10,7 @@
 <br>
 <br>
 <br>
+<form method="POST" action="{{ url_for('register') }}">
 <div class="container form-container">
 <form class="needs-validation" novalidate>
   <div class="form-row">
@@ -38,13 +39,13 @@
         </div>
     </div>
     <div class="col-md-4 mb-3">
-        {{ form.contact_number.label }} {{ form.contact_number }}
+        {{ form.phone_number.label }} {{ form.phone_number }}
         <div class="invalid-feedback">
           Please choose a contact number.
         </div>
     </div>
       <div class="col-md-4 mb-3">
-        {{ form.address.label }} {{ form.address }}
+        {{ form.address_line.label }} {{ form.address_line }}
         <div class="invalid-feedback">
           Please choose an address.
         </div>

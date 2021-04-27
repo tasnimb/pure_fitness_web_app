@@ -21,8 +21,14 @@ def contact():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = ""
-    form = LoginForm()
+    # error = ""
+    # form = LoginForm()
+    # if form.validate_on_submit()
+    # user = CustomerLogin.query.get(form.email_address.data)
+    #     if user:
+    #         if password(user.password, form.password.data):
+    #             user.authenticated
+
     if request.method == "POST" and form.validate():
         email = form.email.data
         password = form.password.data
@@ -36,15 +42,26 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegistrationForm(request.form)
-    if request.method == 'POST' and form.validate():
-        customer = CustomerName(first_name=form.first_name.data,
-                                last_name=form.last_name.data)
-                   # CustomerContact(phone_number=form.phone_number.data,
-                   #                                                              email_address=form.email_address.data,
-                   #                                                              address_line=form.address_line.data), \
-                   # Postcode(postcode=form.postcode.data), City(city=form.city.data), CustomerLogin(form.password.data)
-        db.session.add(customer)
+    form = RegistrationForm()
+    if request.method == 'POST':
+        first_name=form.first_name.data
+        last_name=form.last_name.data
+        phone_number=form.phone_number.data
+        email_address=form.email_address.data
+        address_line=form.address_line.data
+        postcode=form.post_code.data
+        city=form.city.data
+        password=form.password.data
+        name = CustomerName(first_name=first_name,last_name=last_name)
+        details = CustomerContact(phone_number=phone_number,address_line=address_line)
+        postcode = Postcode(postcode=postcode)
+        city = City(city=city)
+        login_d = CustomerLogin(email_address=email_address,password=password)
+        db.session.add(name)
+        db.session.add(details)
+        db.session.add(postcode)
+        db.session.add(city)
+        db.session.add(login_d)
         db.session.commit()
         flash('Thanks for registering')
         return redirect(url_for('login'))

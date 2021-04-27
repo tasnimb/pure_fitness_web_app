@@ -11,8 +11,8 @@ class RegistrationForm(FlaskForm):
     last_name = StringField('lastname', validators=[DataRequired(), Length(min=2, max=20)])
     dob = DateField('dob', format='%y-%m-%d')
     email_address = StringField('Email',validators=[DataRequired(), Length(min=6, max=35)])
-    contact_number = IntegerField('phone',validators=[DataRequired(), Length(min=4, max=25)]) # check out regex
-    address = StringField('address',validators=[DataRequired(), Length(min=5, max=50)])
+    phone_number = IntegerField('phone',validators=[DataRequired(), Length(min=4, max=25)]) # check out regex
+    address_line = StringField('address',validators=[DataRequired(), Length(min=5, max=50)])
     post_code = StringField('postcode', validators=[DataRequired(), Length(min=8, max=10)])
     city = StringField('city', validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password', validators=[DataRequired()])

@@ -38,8 +38,8 @@ class Postcode(db.Model):
 class CustomerLogin(db.Model):
     __tablename__ = 'Customer Login'
     customerlogin_id = db.Column(db.Integer, primary_key=True)
-    email_address = db.Column(db.String(50), db.ForeignKey('CustomerContact.email_address.id'))
-    password = db.Column(db.String(8))
+    email_address = db.Column(db.String(50))
+    password = db.Column(db.String(50))
 
 
 class Activity(db.Model):

@@ -14,12 +14,12 @@ postcode_c = Postcode(postcode='WD17 3EX')
 testPerson1 = CustomerName(first_name='Tasnim', last_name='Begum')
 testPerson2 = CustomerName(first_name='Dwayne', last_name='Johnson')
 testPerson3 = CustomerName(first_name='Beyonce', last_name='Knowles-Carter')
-testPerson1a = CustomerContact(customer_name_id=1, phone_number='07497500204', email_address='tasnim.b98@gmail.com',
-                                address_line='28 London Street', postcode_id=1, city_id=1)
-testPerson2a = CustomerContact(customer_name_id=2, phone_number='07946183457', email_address='dwayne@fastcars.com',
-                                address_line='1 The Green', postcode_id=2, city_id=2)
-testPerson3a = CustomerContact(customer_name_id=3, phone_number='07946512396', email_address='beyonce@halo.com',
-                            address_line='21 Jump Street', postcode_id=3, city_id=3)
+testPerson1a = CustomerContact( phone_number='07497500204', email_address='tasnim.b98@gmail.com',
+                                address_line='28 London Street')
+testPerson2a = CustomerContact(phone_number='07946183457', email_address='dwayne@fastcars.com',
+                                address_line='1 The Green')
+testPerson3a = CustomerContact(phone_number='07946512396', email_address='beyonce@halo.com',
+                            address_line='21 Jump Street')
 tas_login = CustomerLogin(email_address=1, password="yourewelcome")
 rock_login = CustomerLogin(email_address=2, password="yourewelcome")
 beyonce_login = CustomerLogin(email_address=3, password="ringonit")
