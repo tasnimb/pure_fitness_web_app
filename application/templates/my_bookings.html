@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{{ url_for('templates', filename='my_bookings.html') }}
+
+{% block title %}MyBookings{% endblock %}
+
+{% block body_content %}
+<h1 align="centre">My Active Sessions</h1>
+<br>
+<br>
+<br>
+<br>
+<h1>My booking history</h1>
+<table>
+  <thead>
+    <tr>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Activity</th>
+        <th>Timeslot</th>
+    </tr>
+    </thead>
+    <tbody>
+     {% for BookActivity in activities  %}
+            <tr>
+                <td>{{ BookActivity.email_address }}</td>
+                <td>{{ BookActivity.date }}</td>
+                <td>{{ BookActivity.activity_type_id_b }}</td>
+                <td>{{ BookActivity.time_id_b }}</td>
+                <td>{{ BookActivity.timeslot_id_b }}</td>
+            </tr>
+     {% endfor %}
+    </tbody>
+</table>
+
+<!--<table>-->
+<!--  <thead>Past bookings-->
+<!--    <tr>-->
+<!--        <th>Date</th>-->
+<!--        <th>Email</th>-->
+<!--        <th>Activity</th>-->
+<!--        <th>Timeslot</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--     {% for BookActivity, Activity, Timeslot in selected  %}-->
+<!--        {% if BookActivity['date'] < date.today()  %}-->
+<!--            <tr>-->
+<!--                <td>{{ BookActivity.email_address }}</td>-->
+<!--                <td>{{ BookActivity.date }}</td>-->
+<!--                <td>{{ Activity.activity_type }}</td>-->
+<!--                <td>{{ TimeSlot.activity_timeslot }}</td>-->
+<!--            </tr>-->
+<!--        {% endif %}-->
+<!--     {% endfor %}-->
+<!--    </tbody>-->
+<!--</table>-->
+
+
+<!--# allow the customer to delete their booking-->
+
+{% endblock %}

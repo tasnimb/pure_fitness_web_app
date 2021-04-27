@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{{ url_for('templates', filename='activities.html') }}
+
+{% block title %}ActivitiesBook a Class{% endblock %}
+
+{% block body_content %}
+<div>
+<br>
+<br>
+<br>
+<br>
+<h1>Our Daily Classes</h1>
+<p>We offer a wide range of activities every day for all ages and abilities.</p>
+<p>Our instructors are highly qualified and experienced professionals ready to help you achieve your goals.</p>
+</div>
+<div>
+  <table>
+         <thead>
+            <tr>
+               <th>Type</th>
+               <th>Description</th>
+               <th>Duration</th>
+               <th>Instructor</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for Activity in activities %}
+               <tr>
+                  <td>{{ Activity.activity_type }}</td>
+                  <td>{{ Activity.activity_description }}</td>
+                  <td>{{ Activity.duration }}</td>
+                  <td>{{ Activity.instructor_name }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+</div>
+<br>
+    <a href="{{ url_for('login') }}">
+   <button>Login</button>
+</a>
+<br>
+<br>
+
+<!--<script>-->
+
+<!--to go above in <input onclick="msg()>-->
+
+<!--function msg() {-->
+<!--  alert("Please Register or Log-in to book a class.");-->
+<!--}-->
+<!--</script>-->
+{% endblock %}
