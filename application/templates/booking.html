@@ -1,13 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{{ url_for('templates', filename='booking.html') }}
 
-<!--when a user click book from the nav bar, they will be asked to login, they they will be taken to their dashboard
-where there will be an option to book, after which, they will see this page.-->
+{% block title %}Booking{% endblock %}
+
+{% block body_content %}
+<br>
+<br>
+<br>
+<br>
+<h1>Book a Class</h1>
+<div class="container form-container">
+<form class="needs-validation" method="GET" action=''>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+        {{ form.hidden_tag }}
+
+      {{ form.email_address.label }}: {{ form.email_address }}
+        <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      {{ form.date.label }}: {{ form.date }}
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      {{ form.activity.label }}: {{ form.activity }}
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        {{ form.time_day.label }}: {{ form.time_day }}
+        <div class="invalid-feedback">
+          Please choose a time of day.
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        {{ form.timeslot.label }}: {{ form.timeslot_id }}
+        <div class="invalid-feedback">
+          Please choose a timeslot.
+        </div>
+    </div>
+  </div>
+    <div class="col-md-4 mb-3">
+        {{ form.submit }}
+              <input type = "submit" value = "submit" />
+  </div>
+
+</form>
+</div>
+
+<script>
+<!--    let time_day = document.getElementById('activity_time');-->
+<!--    let timeslot = document.getElementById('timeslot');-->
+
+<!--    time_day.onchange = function(){-->
+<!--    time = time_day.value;-->
+
+<!--    fetch('/timeslot/'+ state).then(function(response){-->
+<!--        response.json().then(function(data){-->
+<!--            let optionHTML = '';-->
+<!--            for (let timeslot of data.timeslot){-->
+<!--                optionHTML += '<optionvalue="' + timeslot.id + '">' + timeslot.name +'</option>;-->
+<!--            }-->
+<!--            timeslot_select.innerHTML = optionHTML;-->
+<!--        }-->
+<!--    });-->
+<!--    }-->
+
+</script>
+
+{% endblock %}

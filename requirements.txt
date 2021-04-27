@@ -2,3 +2,4 @@ Flask
 SQLAlchemy
 flask_wtf
 flask-wtf
+wtforms
