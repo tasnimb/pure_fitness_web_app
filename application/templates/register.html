@@ -5,14 +5,14 @@
 {% block title %}Register{% endblock %}
 
 {% block body_content %}
-
-<br>
-<br>
-<br>
-<br>
 <form method="POST" action="{{ url_for('register') }}">
 <div class="container form-container">
+
+<!--            {% if error %}-->
+<!--                <p class=message><strong>Message</strong> {{ error }}-->
+<!--            {% endif %}-->
 <form class="needs-validation" novalidate>
+
   <div class="form-row">
     <div class="col-md-4 mb-3">
       {{ form.first_name.label }} {{ form.first_name }}
