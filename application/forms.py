@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateField, SelectField, HiddenField
 from wtforms.validators import DataRequired, InputRequired, Length, Email, EqualTo
+from wtforms.fields.html5 import DateField
 
 
 gender = ('Female', 'Male')
@@ -46,7 +47,7 @@ class BookActivity(FlaskForm):
     timeslot = [("9am - 10am", "9am - 10am"), ("11am - 12pm", "11am - 12pm"), ("1pm - 2pm", "1pm - 2pm"), ("3pm - 4pm", "3pm - 4pm"),
                 ("5pm - 6pm", "5pm - 6pm"), ("7pm - 8pm", "7pm - 8pm"), ]
     email_address = StringField('Email', validators=[DataRequired(), Length(min=6, max=35)])
-    date = DateField('Date', format='%y-%m-%d')
+    date = DateField('Date', format='%Y-%m-%d')
     activity_type = SelectField('Class', validators=[DataRequired()], choices=activity)
     timeslot = SelectField('Timeslot', validators=[DataRequired()], choices=timeslot)
     submit = SubmitField('Book')
