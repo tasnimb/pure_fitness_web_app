@@ -1,54 +1,72 @@
 {% extends "layout.html" %}
 
-{{ url_for('templates', filename='book.html') }}
+{{ url_for('templates', filename='booking.html') }}
 
-{% block title %}Book{% endblock %}
+{% block title %}Booking{% endblock %}
 
 {% block body_content %}
-<br><br><br>
+
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+</head>
+<div class="text-center">
+
 <div class='form'>
 
-        <form action="" method="post">
+<main class="form-booking">
+  <form method="POST" action="{{ url_for('booking') }}">
+    <h1 class="h3 mb-3 fw-normal">Book an Activity</h1>
+
+    <div class="form-floating">
+              <br>
             <dl>
-                <dt>Book an Activity</dt>
                 <dd>
-                    {{ form.hidden_tag() }}
-                    {% for error in form.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-
-                    {{ form.date.label() }} {{ form.date(type='date') }}
+                        <br>
+                    <div class="form-floating">
+                      {{ form.email_address.label }} {{ form.email_address }}
+                        <br>
+                    </div>
                     <br>
-
-                    {% for activity_type in Activity  %}
-
-                    {{ form.Activity.label() }} {{ form.activity_type.data }}
-
-                    {% endfor %}
-
+                    <div class="form-floating">
+                      {{ form.date.label }} {{ form.date }}
+                        <br>
+                    </div>
                     <br>
-                    {% for activity_time in ActivityTime  %}
-
-                    {{ form.Time.label() }} {{ form.activity_time.data }}
-
-                    {% endfor %}
+                    <div class="form-floating">
+                      {{ form.activity_type.label }} {{ form.activity_type }}
+                        <br>
+                    </div>
                     <br>
-
-                    {% for activity_timeslot in ActivityTimeslot  %}
-
-                    {{ form.Timeslot.label() }} {{ form.Timeslot.data }}
-
-                    {% endfor %}
+                    <div class="form-floating">
+                        <br>
+                    </div>
                     <br>
+                    <div class="form-floating">
+                    {{ form.timeslot.label }} {{ form.timeslot }}
+                        <br>
+                    </div>
 
-                    {{ form.submit(class=" btn btn-primary") }}
                     {{ message }}
                 </dd>
             </dl>
-            <p><input type=submit value=Book>
+<!--            <p><input type=submit value=Book>-->
 
-        </form>
-
+<!--    <div class="checkbox mb-3">-->
+<!--      <label>-->
+<!--        <input type="checkbox" value="remember-me"> Remember me-->
+<!--      </label>-->
+<!--    </div>-->
+<!--    <button class="btn btn-primary" type="submit">Book</button>-->
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Having difficulty booking? <a class="ml-2" href="{{ url_for('contact') }}">Contact Us</a>
+        </small>
     </div>
+
+
+    {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+</main>
+</div>
 
 {% endblock %}

@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 from datetime import timedelta
-from application.forms import LoginForm, RegistrationForm
+from application.forms import LoginForm, RegistrationForm, BookActivity
 from application import app, db
-from application.models import CustomerContact, CustomerLogin, Activity
+from application.models import CustomerContact, CustomerLogin, Activity, ActivityBook
+from datetime import datetime
 # import bcrypt
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -97,9 +98,20 @@ def book():
     return render_template('activities.html', title='Book', activities=activities)
 
 
-@app.route('/booking')
+@app.route('/booking', methods=['GET', 'POST'])
 def booking():
-    return render_template('booking.html', title='booking')
+    form = BookActivity()
+
+    if request.method == 'POST':
+        booked = ActivityBook(email_address=form.email_address.data,
+                              date=form.date.data,
+                              activity_type=form.activity_type.data,
+                              timeslot=form.timeslot.data)
+        db.session.add(booked)
+        db.session.commit()
+        flash('Thanks for booking!')
+        return redirect(url_for('my_bookings'))
+    return render_template('booking.html', title='Booking', form=form)
 
 
 @app.route('/my_bookings')
