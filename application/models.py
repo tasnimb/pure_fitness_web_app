@@ -1,4 +1,6 @@
 from flask import Flask
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from application import app, db
 from sqlalchemy.orm import relationship
 
@@ -39,7 +41,13 @@ class CustomerLogin(db.Model):
     __tablename__ = 'Customer Login'
     customerlogin_id = db.Column(db.Integer, primary_key=True)
     email_address = db.Column(db.String(50))
-    password = db.Column(db.String(50))
+    password = db.Column(db.String)
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 
 class Activity(db.Model):

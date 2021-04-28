@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, url_for, redirect, flash
 from application.forms import LoginForm, RegistrationForm
 from application import app, db
 from application.models import CustomerContact, CustomerName, Postcode, City, CustomerLogin, Activity
+import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route('/')
@@ -23,20 +25,22 @@ def contact():
 def login():
     error = ""
     form = LoginForm()
-    # if form.validate_on_submit()
-    # user = CustomerLogin.query.get(form.email_address.data)
-    #     if user:
-    #         if password(user.password, form.password.data):
-
     if request.method == "POST" and form.validate():
-        email = form.email.data
-        password = form.password.data
+        email = request.form.get('email')
+        password = request.form.get('password')
+        # email = form.email.data
+        # password = form.password.data
 
-        if len(email) == 0 or len(password) == 0:
-            error = "Please enter your email address and password"
+        user = CustomerLogin.query.filter_by(email_address=email).first()
+        if not user or not check_password_hash(user.password, password):
+            flash('Please check your login details and try again.')  # add code in html for flash
+            return redirect(url_for('register'))
         else:
             return redirect(url_for('dashboard'))
-    return render_template("login.html", title="login", form=form, message=error)
+
+        # if len(email) == 0 or len(password) == 0:
+        #     error = "Please enter your email address and password"
+    return render_template("login.html", title="login", form=form, error=error)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -51,18 +55,20 @@ def register():
         postcode=form.post_code.data
         city=form.city.data
         password=form.password.data
+        # .encode("utf-8") #unicode object for encoding password
+        # hashed = bcrypt.hashpw(password, bcrypt.gensalt()) # encrypt the password and assigning it to variable hashed
         name = CustomerName(first_name=first_name,last_name=last_name)
         details = CustomerContact(phone_number=phone_number,address_line=address_line)
         postcode = Postcode(postcode=postcode)
         city = City(city=city)
-        login_d = CustomerLogin(email_address=email_address,password=password)
+        login_d = CustomerLogin(email_address=email_address,password=generate_password_hash(password, method='sha256'))
         db.session.add(name)
         db.session.add(details)
         db.session.add(postcode)
         db.session.add(city)
         db.session.add(login_d)
         db.session.commit()
-        flash('Thanks for registering')
+        flash('Thanks for registering') #add code in html for flash
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
