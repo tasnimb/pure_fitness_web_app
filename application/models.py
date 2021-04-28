@@ -43,7 +43,7 @@ class CustomerLogin(db.Model):
     email_address = db.Column(db.String(50))
     password = db.Column(db.String)
 
-    def set_password(self, password):
+    def set_password(self, password): # saw someone add the hash passwords, here just put it here for everyone to see, but im not currently using it
         self.password = generate_password_hash(password)
 
     def check_password(self, password):

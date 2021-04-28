@@ -31,12 +31,12 @@ def login():
         # email = form.email.data
         # password = form.password.data
 
-        user = CustomerLogin.query.filter_by(email_address=email).first()
-        if not user or not check_password_hash(user.password, password):
+        user = CustomerLogin.query.filter_by(email_address=email).first() #telling the data base to filter on email addresses, to find the one the customer sends to the database
+        if not user or not check_password_hash(user.password, password): #this line here is only = True, if it = False then would redirect to dashboard, why is that?
             flash('Please check your login details and try again.')  # add code in html for flash
             return redirect(url_for('register'))
         else:
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard')) # not working
 
         # if len(email) == 0 or len(password) == 0:
         #     error = "Please enter your email address and password"
@@ -61,7 +61,7 @@ def register():
         details = CustomerContact(phone_number=phone_number,address_line=address_line)
         postcode = Postcode(postcode=postcode)
         city = City(city=city)
-        login_d = CustomerLogin(email_address=email_address,password=generate_password_hash(password, method='sha256'))
+        login_d = CustomerLogin(email_address=email_address,password=generate_password_hash(password, method='sha256')) #this encryption solution takes up less memory as its just an import
         db.session.add(name)
         db.session.add(details)
         db.session.add(postcode)
