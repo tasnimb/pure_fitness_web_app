@@ -29,6 +29,15 @@ class LoginForm(FlaskForm):
     Login = SubmitField('Login')
 
 
+class Password_Reset(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    new_password = PasswordField('Password', validators=[DataRequired()])
+    confirm_new_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Update Password')
+
+
+
 # class BookActivity(FlaskForm):
 #     booking_id = HiddenField()
 #     email = StringField('Email', validators=[InputRequired(), Length(min=6, max=35)])

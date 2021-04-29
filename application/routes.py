@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 from datetime import timedelta
-from application.forms import LoginForm, RegistrationForm, BookActivity
+from application.forms import LoginForm, RegistrationForm, BookActivity, Password_Reset
 from application import app, db, flask_change_password
 from application.models import CustomerContact, CustomerLogin, Activity, ActivityBook
 from flask_change_password import  ChangePassword, ChangePasswordForm, SetPasswordForm
@@ -138,3 +138,22 @@ def my_bookings():
 @app.route('/policy')
 def policy():
     return render_template('policy.html', title='policy')
+
+
+@app.route('/password_reset', methods=['GET', 'POST'])
+def password_reset():
+    form = Password_Reset()
+    if request.method == 'POST':
+        # email = request.form.get('email')
+        # new_password = request.form.get('new_password')
+        email = form.email.data
+        password = form.confirm_new_password.data
+        user = CustomerLogin.query.filter_by(email_address=email).first()
+        user.password = generate_password_hash(password, method='sha256')
+        # user.password = new_password
+        # user2 = CustomerLogin(email_address=email,password=generate_password_hash(password, method='sha256'))
+        # db.session.add(user2)
+        db.session.commit()
+        flash('Your password has been updated!')
+        return redirect(url_for('login'))
+    return render_template('password_reset.html', form=form, title='password_reset')
