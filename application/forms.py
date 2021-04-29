@@ -10,7 +10,7 @@ gender = ('Female', 'Male')
 class RegistrationForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
     last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
-    dob = DateField('Date-of-birth', format='%y-%m-%d')
+    date_of_birth = DateField('Date-of-birth', format='%Y-%m-%d')
     email_address = StringField('Email', validators=[DataRequired(), Length(min=6, max=35)])
     phone_number = IntegerField('Phone', validators=[DataRequired(), Length(min=4, max=25)]) # check out regex
     address_line = StringField('Address', validators=[DataRequired(), Length(min=5, max=50)])

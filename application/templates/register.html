@@ -27,13 +27,13 @@
       </div>
     </div>
     <div class="col-md-4 mb-3">
-      {{ form.dob.label }} {{ form.dob }}
+      {{ form.date_of_birth.label }} {{ form.date_of_birth }}
       <div class="valid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
-        {{ form.email_address.label }} {{ form.email_address }}
+        {{ form.email_address.label }} {{ form.email_address(placeholder="example@getfit.com") }}
         <div class="invalid-feedback">
           Please enter an email address.
         </div>

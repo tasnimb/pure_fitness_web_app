@@ -1,5 +1,6 @@
 from flask import Flask
 from application import app, db
+from datetime import date
 
 
 class CustomerContact(db.Model):
@@ -7,6 +8,7 @@ class CustomerContact(db.Model):
     customer_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
+    date_of_birth=db.Column(db.Date,nullable=True)
     phone_number = db.Column(db.String(15))
     address_line = db.Column(db.String(70))
     postcode = db.Column(db.String(8))
@@ -33,7 +35,7 @@ class ActivityBook(db.Model):
     __tablename__ = 'BookActivity'
     booking_id = db.Column(db.Integer, primary_key=True)
     email_address = db.Column(db.String(50))
-    date = db.Column(db.DateTime, nullable=False)
+    date = db.Column(db.Date, nullable=False)
     activity_type = db.Column(db.String(15), nullable=False)
     timeslot = db.Column(db.String(15), nullable=False)
 
