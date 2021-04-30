@@ -57,13 +57,15 @@ background-color:rgba(0, 150, 199, 3);
 /*logout button start*/
 .btn{
 margin-left: 20px;
-padding: 9px 25px;
+padding: 30px 40px;
 background-color:#0096c7;
 border: none;
 border-radius: 50px;
 cursor:pointer;
 transition: all 0.3s ease 0s;
-color:#fff
+color:#000;
+font-weight:800;
+
 }
 
 .btn:hover {
@@ -87,8 +89,8 @@ background-color: #90e0ef};
 }
 
 .navbar-expand-lg .navbar-nav .nav-link{
-    font-weight:700
-    font-size:16px;
+    font-weight:800;
+    font-size:26px;
     position:relative;
     color:#24252A;
     text-decoration: none;
@@ -103,12 +105,14 @@ background-color: #90e0ef};
     border-top:2px solid rgba(0, 136, 169, 0.8);
    color:rgba(0, 136, 169, 0.8);
    font-size:18px;
+
 }
 
 .navbar .navbar-brand{
 text-decoration:none;
 color:#24252A;
-font-size:24px;
+font-size:30px;
+font-weight:800;
 }
 
 .nav-item{margin-right: 20px;}
@@ -298,14 +302,18 @@ margin: auto;
 .quote-container{
 height: 20vh;
 width:100%;
-background-color:	rgba(254,111,94,0.5);
+background-color:rgba(202, 240, 248);
 background-size:cover;
 background-repeat:no-repeat;
 transition: 0.5s;
 transition-timing-function: ease-in;
 
 }
-
+.quote-box{
+ margin: auto;
+  width: 50%;
+text-align:center;
+}
 .new-quote{
       font-size:15px;
       border-radius: 50px;
@@ -391,7 +399,7 @@ margin-bottom:20px;
 border:1px outset;
 box-shadow:rgba(0,0,0,0.3);
 border-radius:50px;
-margin:auto;
+margin-left:20px;
 padding:20px 20px;
 
 }

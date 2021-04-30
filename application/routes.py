@@ -9,10 +9,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app.permanent_session_lifetime=timedelta(minutes=1)
 
 
-@app.before_request
-def before_request():
-    if '' in session:
-        CustomerLogin.query.filter_by(email_address=email).first()
+# @app.before_request
+# def before_request():
+#     if '' in session:
+#         CustomerLogin.query.filter_by(email_address=email).first()
 
 
 @app.route('/')

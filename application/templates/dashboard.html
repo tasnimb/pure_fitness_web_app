@@ -23,15 +23,15 @@
 
 {% block body_content %}
 <div class="container-fluid quote-container " >
-    <div class="row justify-content-center text-align-center">
+    <div class="row justify-content-center ">
 
 
-<h1>{{user}} </h1>
+<!--<h1>{{user}} </h1>-->
         <!-- Quote Box -->
-        <div class="block text-box text-center text-align-center">
+        <div class="quote-box">
 
             <!-- Front part of the Quote Box -->
-            <div class="quote-box block__main block__front">
+            <div class="text-box block__main block__front">
 
                 <!-- Quote to be Displayed Here -->
                 <span class="quote">
@@ -102,7 +102,7 @@
             <h2>My bookings</h2>
             <p>View your upcoming gym class booking,booking history and cancel/reschedule booking.</p>
             <a href="{{ url_for('my_bookings') }}">
-            <button class="btn" type="button">View</button>
+            <button class="btn" type="button">View & Edit</button>
             </a>
         </div>
         <div class="col-md-4 col dashboard-item">
@@ -125,7 +125,7 @@
             <h2>Your Membership</h2>
             <p>Your membership details including upgrade options.</p>
             <a href="{{ url_for('my_bookings') }}">
-            <button class="btn" type="button">View</button>
+            <button class="btn" type="button">View & Edit</button>
             </a>
         </div>
         <div class="col-md-4 col dashboard-item">
@@ -136,12 +136,14 @@
             <h2>Give Us Feedback</h2>
             <p>We love to hear from our members! <br>Please complete the feedback form to help improve our services!</p>
             <a href="{{ url_for('contact') }}">
-            <button class="btn" type="button">Go</button>
+            <button class="btn" type="button">View & Submit</button>
             </a>
 
         </div>
     </div>
+</div>
 
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-12">
             <h2>Here are some awesome offers to say thank you!</h2>
@@ -170,8 +172,8 @@
         </div>
 
     </div>
-
 </div>
+
 
 
 
