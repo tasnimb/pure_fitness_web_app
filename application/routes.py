@@ -1,12 +1,20 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, session
-
+from flask import Flask,g, render_template, request, url_for, redirect, flash, session
+from datetime import timedelta
 from application.forms import LoginForm, RegistrationForm, BookActivity, Password_Reset
 from application import app, db
 from application.models import CustomerContact, CustomerLogin, Activity, ActivityBook
-
-
-
 from werkzeug.security import generate_password_hash, check_password_hash
+
+
+app.permanent_session_lifetime=timedelta(minutes=1)
+
+@app.before_request
+def before_request():
+    if '' in session:
+        CustomerLogin.query.filter_by(email_address=email).first()
+
+
+
 
 
 @app.route('/')
@@ -35,22 +43,30 @@ def login():
     if request.method == "POST" and form.validate():
         email = request.form.get('email')
         password = request.form.get('password')
+        session.permanent = True
+
 
         user = CustomerLogin.query.filter_by(email_address=email).first()
+        user2=email
         if not user or not check_password_hash(user.password, password):
             flash("Please check your login details or sign-up for an account below.")
-            session["user"] = user
+
         else:
-            return redirect(url_for('dashboard'))
+
+            session["user2"] = user2
+            if "user2" in session:
+                return redirect(url_for('dashboard'))
+
+
 
     return render_template("login.html", title="login", form=form, error=flash)
 
 
 @app.route('/dashboard')
 def dashboard():
-    if "user" in session:
-        user = session["user"]
-        return f"<h1>{user}</h1>"
+    if "user2" in session:
+        user2 = session["user2"]
+        return render_template('dashboard.html',user=user2)
     else:
         return redirect(url_for('login'))
     # return render_template('dashboard.html', title='Members Area')
@@ -58,8 +74,8 @@ def dashboard():
 @app.route('/logout')
 def logout():
    # remove the username from the session if it is there
-    session.pop('email', None)
-    return redirect(url_for('home'))
+    session.pop('user2', None)
+    return redirect(url_for('login'))
 
 
 

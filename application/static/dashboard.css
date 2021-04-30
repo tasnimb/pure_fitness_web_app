@@ -298,7 +298,7 @@ margin: auto;
 .quote-container{
 height: 20vh;
 width:100%;
-background-image: linear-gradient(to right bottom, #ed4264a8, #ffedbca8);
+background-color:	rgba(254,111,94,0.5);
 background-size:cover;
 background-repeat:no-repeat;
 transition: 0.5s;
@@ -324,6 +324,7 @@ transition-timing-function: ease-in;
     transition-timing-function: ease-in;
     font-family: 'Roboto', sans-serif;
     background-image: linear-gradient(to right bottom, #ed4264a8, #ffedbca8);
+text-align:center;
 
     -webkit-background-clip: text;
   }

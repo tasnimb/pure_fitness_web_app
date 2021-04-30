@@ -3,6 +3,7 @@ from application import app, db
 from datetime import date
 
 
+
 class CustomerContact(db.Model):
     __tablename__ = 'Customer Contact'
     customer_id = db.Column(db.Integer, primary_key=True)
