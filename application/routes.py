@@ -82,10 +82,16 @@ def register():
     return render_template('register.html', error=flash, form=form)
 
 
+@app.route('/profile')
+def profile():
+
+    return render_template('profile.html', title='profile')
+
 @app.route('/dashboard')
 def dashboard():
-
-    return render_template('dashboard.html', title='dashboard')
+    form=LoginForm()
+    username=db.session.query(CustomerContact).filter_by(first_name=form.email.data).first()
+    return render_template('dashboard.html', title='Members Area',username=username)
 
 
 @app.route('/book', methods=['GET'])

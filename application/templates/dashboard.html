@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "logged_layout.html" %}
 
 {{ url_for('templates', filename='dashboard.html') }}
 <head>
@@ -14,16 +14,19 @@
 
     <!-- Loading Open Sans Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="members.css">
+
+    <link rel="stylesheet" href="{{url_for ('static', filename='member.js')}}">
 
 
 </head>
 
 
 {% block body_content %}
+<div class="container-fluid quote-container" >
+    <div class="row justify-content-center text-align-center">
 
-<div class="container fixed-top">
-    <div class="row">
+
+
         <!-- Quote Box -->
         <div class="block text-center">
 
@@ -34,37 +37,37 @@
                 <span class="quote">
 
                     <!-- Hyphen is Displayed  -->
-                    <i class="fas fa-2x fa-quote-left"></i>
+                    <img src="https://img.icons8.com/fluent-systems-filled/48/000000/quote-left.png"/>
 
                     <!-- Quote Text -->
-                    <span class="text">
+                    <span class="text rotateF">
                         "All that you see out infront of you, is what you see displayed in your head"
                     </span>
-
+                    <img src="https://img.icons8.com/fluent-systems-filled/48/000000/quote-right.png"/>
                 </span>
 
                 <!-- Author to be Displayed Here -->
                 <div class="author">
                     Alan Watts
                 </div>
-                <a class="new-quote btn btn-default" onclick="newQuote()">New Quote</a>
+                <a class="new-quote btn btn-default"  onclick="newQuote()">New Quote</a>
             </div>
 
             <!-- Back Part of the Quote Box -->
-            <div class="quote-box block__main block__back">
+            <div class="quote-box block__main block__back  ">
 
                 <!-- Quote to be Displayed Here -->
                 <span class="quote">
 
                     <!-- Hyphen is Displayed  -->
-                    <i class="fas fa-2x fa-quote-left"></i>
 
+                    <img src="https://img.icons8.com/fluent-systems-filled/48/000000/quote-left.png"/>
                     <!-- Quote Text -->
                     <span class="text">
                         "The only way to make sense out of change is to plunge into it, move with it, and join the
                         dance"
                     </span>
-
+                    <img src="https://img.icons8.com/fluent-systems-filled/48/000000/quote-right.png"/>
                 </span>
 
                 <!-- Author to be Displayed Here -->
@@ -75,21 +78,109 @@
                 <a class="new-quote btn btn-default " onclick="newQuote()">New Quote</a>
             </div>
         </div>
+
+
+        </div>
+   </div>
+
+<div class="container main-container">
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-12 m-3 text-center" id="upgrade">
+            <button id="upgrade-btn" type="button">UPGRADE YOUR MEMBERSHIP</button>
+        </div>
+
     </div>
+
+    <div class="row justify-content-center ">
+        <div class="col-md-4 col-12 dashboard-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-journal-plus" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+             <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+            </svg>
+            <h2>My bookings</h2>
+            <p>View your upcoming gym class booking,booking history and cancel/reschedule booking.</p>
+            <a href="{{ url_for('my_bookings') }}">
+            <button class="btn" type="button">View</button>
+            </a>
+        </div>
+        <div class="col-md-4 col dashboard-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg>
+            <h2>My Profile</h2>
+            <p>View and edit your personal and contact details.</p>
+            <a href="{{ url_for('profile') }}">
+            <button class="btn" type="button">View & Edit</button>
+            </a>
+        </div>
+    </div>
+
+  <div class="row justify-content-center">
+        <div class="col-md-4 col-12 dashboard-item">
+           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-gift" viewBox="0 0 16 16">
+           <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z"/>
+            </svg>
+            <h2>Your Membership</h2>
+            <p>Your membership details including upgrade options.</p>
+            <a href="{{ url_for('my_bookings') }}">
+            <button class="btn" type="button">View</button>
+            </a>
+        </div>
+        <div class="col-md-4 col dashboard-item">
+           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            <h2>Give Us Feedback</h2>
+            <p>We love to hear from our members! <br>Please complete the feedback form to help improve our services!</p>
+            <a href="{{ url_for('profile') }}">
+            <button class="btn" type="button">Go</button>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+            <h2>Here are some awesome offers to say thank you!</h2>
+
+        </div>
+
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-3 col-12 member-benefit">
+            <img src="{{url_for('static',filename='images/benefit1.png')}}" alt="" width="250px" height="250px">
+            
+        </div>
+         <div class="col-md-3 col-12 member-benefit">
+            <img src="{{url_for('static',filename='images/benefit2.png')}}" alt="" width="250px" height="250px">
+
+        </div>
+
+        <div class="col-md-3 col-12 member-benefit">
+            <img src="{{url_for('static',filename='images/benefit3.png')}}" alt="" width="250px" height="250px">
+
+        </div>
+
+        <div class="col-md-3 col-12 member-benefit">
+            <img src="{{url_for('static',filename='images/benefit4.png')}}" alt="" width="250px" height="250px" >
+
+        </div>
+
+    </div>
+
 </div>
 
 
-<h2>Book a Class</h2>
-<br>
-    <a href="{{ url_for('booking') }}">
-   <button>Book</button>
-</a>
 
-<h2>My bookings</h2>
-<br>
-    <a href="{{ url_for('my_bookings') }}">
-   <button>My Bookings</button>
-</a>
-<script src="{{url_for ('static', filename='member.js')}}"></script>
+
+
+
+
+
+ <script src="{{url_for ('static', filename='member.js')}}"></script>
 
 {% endblock %}
+
