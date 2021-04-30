@@ -1,20 +1,18 @@
 from flask import Flask,g, render_template, request, url_for, redirect, flash, session
 from datetime import timedelta
-from application.forms import LoginForm, RegistrationForm, BookActivity, Password_Reset
+from application.forms import LoginForm, RegistrationForm, BookedActivity, Password_Reset, Qns
 from application import app, db
-from application.models import CustomerContact, CustomerLogin, Activity, ActivityBook
+from application.models import CustomerContact, CustomerLogin, Activity, ActivityBooked, Faq
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app.permanent_session_lifetime=timedelta(minutes=1)
 
+
 @app.before_request
 def before_request():
     if '' in session:
         CustomerLogin.query.filter_by(email_address=email).first()
-
-
-
 
 
 @app.route('/')
@@ -31,11 +29,6 @@ def home():
     return render_template('home.html', title='Home')
 
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html', title='Contact')
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = ""
@@ -45,9 +38,8 @@ def login():
         password = request.form.get('password')
         session.permanent = True
 
-
         user = CustomerLogin.query.filter_by(email_address=email).first()
-        user2=email
+        user2 = email
         if not user or not check_password_hash(user.password, password):
             flash("Please check your login details or sign-up for an account below.")
 
@@ -56,8 +48,6 @@ def login():
             session["user2"] = user2
             if "user2" in session:
                 return redirect(url_for('dashboard'))
-
-
 
     return render_template("login.html", title="login", form=form, error=flash)
 
@@ -71,12 +61,12 @@ def dashboard():
         return redirect(url_for('login'))
     # return render_template('dashboard.html', title='Members Area')
 
+
 @app.route('/logout')
 def logout():
    # remove the username from the session if it is there
     session.pop('user2', None)
     return redirect(url_for('login'))
-
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -116,22 +106,25 @@ def book():
 
 @app.route('/booking', methods=['GET', 'POST'])
 def booking():
-    form = BookActivity()
+    form = BookedActivity()
 
     if request.method == 'POST':
-        booked = ActivityBook(email_address=form.email_address.data,
-                              date=form.date.data,
-                              activity_type=form.activity_type.data,
-                              timeslot=form.timeslot.data)
+        email_address = request.form.get('email_address')
+        booked = ActivityBooked(email_address=form.email_address.data,
+                                date=form.date.data,
+                                activity_type=form.activity_type.data,
+                                timeslot=form.timeslot.data)
         db.session.add(booked)
         db.session.commit()
         flash('Thanks for booking!')
         return redirect(url_for('my_bookings'))
-    return render_template('booking.html', title='Booking', form=form)
+    return render_template('booking.html', title='Book Class', form=form)
 
 
 @app.route('/my_bookings')
 def my_bookings():
+    # # email_address = request.form.get('email_address')
+    # booking_class = BookedActivity.query.filter(BookedActivity.email_address == email_address).all()
     return render_template('my_bookings.html', title='my_bookings')
 
 
@@ -156,3 +149,25 @@ def password_reset():
             flash('You do not have an account, please sign up below')
 
     return render_template('password_reset.html', form=form, title='password_reset')
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = Qns()
+    if request.method == 'POST':
+        email_address = request.form.get('email_address')
+        question = Faq(name=form.name.data,
+                       email_address=form.email_address.data,
+                       subject=form.subject.data,
+                       question=form.question.data)
+        db.session.add(question)
+        db.session.commit()
+        flash('The form has been submitted.')
+        return redirect(url_for("contact_feedback", email_address=email_address))
+    return render_template('contact.html', title='Contact', form=form)
+
+
+@app.route('/contact_feedback/<email_address>')
+def contact_feedback(email_address):
+    comment = Faq.query.filter(Faq.email_address == email_address).all()
+    return render_template('contact_feedback.html', comment=comment, title='My Contact')

@@ -3,7 +3,6 @@ from application import app, db
 from datetime import date
 
 
-
 class CustomerContact(db.Model):
     __tablename__ = 'Customer Contact'
     customer_id = db.Column(db.Integer, primary_key=True)
@@ -32,7 +31,7 @@ class Activity(db.Model):
     instructor_name = db.Column(db.String(30), nullable=False)
 
 
-class ActivityBook(db.Model):
+class ActivityBooked(db.Model):
     __tablename__ = 'BookActivity'
     booking_id = db.Column(db.Integer, primary_key=True)
     email_address = db.Column(db.String(50))
@@ -40,31 +39,11 @@ class ActivityBook(db.Model):
     activity_type = db.Column(db.String(15), nullable=False)
     timeslot = db.Column(db.String(15), nullable=False)
 
-#
-# class ActivityTime(db.Model):
-#     __tablename__ = 'ActivityTime'
-#     time_id = db.Column(db.Integer, primary_key=True)
-#     activity_time = db.Column(db.String(15), nullable=False)
-#
-#
-# class ActivityTimeslot(db.Model):
-#     __tablename__ = 'ActivityTimeslot'
-#     timeslot_id = db.Column(db.Integer, primary_key=True)
-#     activity_timeslot = db.Column(db.String(15), nullable=False)
-#     day_time_id = db.Column(db.Integer, db.ForeignKey('ActivityTime.time_id'))
-#
-#     # def __init__(self, activity_timeslot):
-#     #     self.activity_timeslot = timeslot
-#
-#
-# class ActivityBooking(db.Model):
-#     __tablename__ = 'ActivityBooking'
-#     booking_id = db.Column(db.Integer, primary_key=True)
-#     email_address = db.Column(db.String(50), unique=True)
-#     date = db.Column(db.String(15), nullable=False)
-#     activity_type_id_b = db.Column(db.Integer, db.ForeignKey('Activity.activity_type_id'), nullable=False)
-#     time_id_b = db.Column(db.Integer, db.ForeignKey('ActivityTime.time_id'), nullable=False)
-#     timeslot_id_b = db.Column(db.Integer, db.ForeignKey('ActivityTimeslot.timeslot_id'), nullable=False)
-#     # Activity = db.relationship("Activity", back_populates="ActivityBooking")
-#     # ActivityTimeslot = db.relationship("ActivityTimeslot", back_populates="ActivityBooking")
-#     # ActivityTime = db.relationship("ActivityTime", back_populates="ActivityBooking")
+
+class Faq(db.Model):
+    __tablename__ = 'Faq'
+    faq_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    email_address = db.Column(db.String(50))
+    subject = db.Column(db.String(100), nullable=False)
+    question = db.Column(db.String(500), nullable=False)

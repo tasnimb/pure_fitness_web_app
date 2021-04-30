@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateField, SelectField, HiddenField
-from wtforms.validators import DataRequired, InputRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import DateField
 
 
@@ -37,20 +37,17 @@ class Password_Reset(FlaskForm):
     submit = SubmitField('Update Password')
 
 
-
-# class BookActivity(FlaskForm):
-#     booking_id = HiddenField()
-#     email = StringField('Email', validators=[InputRequired(), Length(min=6, max=35)])
-#     date = DateField('Class Date')
-#     activity = SelectField('Class', validators=[InputRequired()], choices=[('Strength', 'Strength'), ('Cardio', 'Cardio'),
-#                                         ('Mind and Body', 'Mind and Body'), ('Cycling', 'Cycling'), ('Swim', 'Swim')])
-#     activity_time = SelectField('Time of Day', validators=[InputRequired()], choices=[('1', 'Morning'),
-#                                                                     ('2', 'Afternoon'), ('3', 'Evening')])
-#     activity_timeslot = SelectField('Timeslot', validators=[InputRequired()], choices=[])
-#     Book = SubmitField('Book a Class')
+class Qns(FlaskForm):
+    subjects = [('Registration Support', 'Registration Support'), ('Booking Support', 'Booking Support'),
+                ('Complaint or Grievance', 'Complaint or Grievance'), ('Feedback', 'Feedback'), ('Other', 'Other')]
+    name = StringField('Name', validators=[DataRequired(), Length(min=5, max=100)])
+    email_address = StringField('Email', validators=[DataRequired(), Email()])
+    subject = SelectField('Subject', validators=[DataRequired()], choices=subjects)
+    question = StringField('Question/Comment', validators=[DataRequired(), Length(min=10, max=500)])
+    submit = SubmitField('Submit')
 
 
-class BookActivity(FlaskForm):
+class BookedActivity(FlaskForm):
     activity = [('Strength', 'Strength'), ('Cardio', 'Cardio'), ('Mind and Body', 'Mind and Body'), ('Cycling', 'Cycling'),
                 ('Swim', 'Swim')]
     timeslot = [("9am - 10am", "9am - 10am"), ("11am - 12pm", "11am - 12pm"), ("1pm - 2pm", "1pm - 2pm"), ("3pm - 4pm", "3pm - 4pm"),

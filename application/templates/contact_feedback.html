@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{{ url_for('templates', filename='my_contact.html') }}
+
+{% block title %}My Contact{% endblock %}
+
+{% block body_content %}
+
+<div>
+    <div class="card">
+        <div class="card-body">
+
+                {% for Faq in comment %}
+
+            <p>Thank you <strong>{{ Faq.name }} </strong> for getting in touch.</p>
+
+                   <p>Here is a copy of your message: <br>
+                       <strong>{{ Faq.subject }} - </strong>
+                       <i>{{ Faq.question }} </i> </p>
+
+                {% endfor %}
+
+                    <p>We aim to respond to all enquiries within 48 hrs.</p>
+
+            <p>For urgent concerns, please contact the centre Manager directly.</p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -12,39 +12,43 @@
   <thead>
     <tr>
         <th>Date</th>
-        <th>Session name</th>
-        <th>Instructor</th>
+        <th>Class</th>
+        <th>Class</th>
     </tr>
     </thead>
-    <tbody>
-     {% for row in session  %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-            </tr>
-        {% endfor %}
+<!--    <tbody>-->
+<!--     {% for BookedActivity in booking_class  %}-->
+<!--&lt;!&ndash;            {% if BookActivity.date <= BookActivity.date.now() %}&ndash;&gt;-->
+<!--            <tr>-->
+<!--                <td>{{ BookedActivity.date }}</td>-->
+<!--                <td>{{ BookedActivity.timeslot }}</td>-->
+<!--                <td>{{ BookedActivity.class }}</td>-->
+<!--            </tr>-->
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+<!--        {% endfor %}-->
     </tbody>
 </table>
-<h2>Past bookings</h2>
-<p>The table below displays the previous classes you have attended.</p>
-<table>
-  <thead>
-    <tr>
-        <th>Date</th>
-        <th>Session name</th>
-        <th>Instructor</th>
-    </tr>
-    </thead>
-    <tbody>
-     {% for row in session  %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
+<!--<h2>Past bookings</h2>-->
+<!--<p>The table below displays the previous classes you have attended.</p>-->
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--        <th>Date</th>-->
+<!--        <th>Session name</th>-->
+<!--        <th>Instructor</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--     {% for BookActivity in booking_class  %}-->
+<!--            {% if BookActivity.date > BookActivity.date.now() %}-->
+<!--            <tr>-->
+<!--                <td>{{ BookActivity.date }}</td>-->
+<!--                <td>{{ BookActivity.timeslot }}</td>-->
+<!--                <td>{{ BookActivity.class }}</td>-->
+<!--            </tr>-->
+<!--            {% endif %}-->
+<!--        {% endfor %}-->
+<!--    </tbody>-->
 </table>
 </div>
 <br>

@@ -5,8 +5,15 @@
 {% block title %}Policy{% endblock %}
 {% block body_content %}
 <h1>The finer details of our policies </h1>
-<button type="button" class="btn btn-1 collapsible" style="display:block;" >Club rules</button>
-<div class="collapse">
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Club rules
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
       <p>All members and guests must comply with these policies. These are incorporated into a Member’s Contract with
         us, and compliance with these policies is important both to maintain the standards and to enable Members to get
         full enjoyment from their Membership.
@@ -20,29 +27,48 @@
         Members reasonable advance notice by placing the new policies on a notice board.
         Words and phrases in these policies have the same meanings as given in our Membership Terms & Conditions, unless
         specified otherwise.</p>
-</div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Membership</button>
-<div class="collapse">
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Membership
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>Acceptance of an application for Membership is at our absolute discretion (although we will exercise our
         discretion reasonably, and in compliance with applicable laws).
         We offer different types of Memberships and these may change from time to time.
         Each category of Membership has different restrictions, conditions, and benefits. Another category of Membership
         may be of interest to you if your requirements or circumstances change.</p>
-</div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Guests</button>
-<div class="collapse">
-  <p>Members may bring guests to the centre provided according to their membership status.
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Guests
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>Members may bring guests to the centre provided according to their membership status.
         Members must accompany their guest at all times, and the Member who brings the guest remains responsible for their
         guest’s conduct whilst they are at the centre. The Member may not leave the centre prior to their guest’s departure.
         A Member who has “frozen” his/her Membership will not be allowed access to the centre (including as a guest).
         Members must ensure that their guests comply with these policies.
-        At all times, guests must complete a Health Commitment Statement as requested by us.</p>
+        At all times, guests must complete a Health Commitment Statement as requested by us.</p>      </div>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Behaviour and dress standards</button>
-<div class="collapse">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Behaviour and dress standards
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>You should conduct yourself in a quiet and well-mannered fashion when in or about the centre, and in a manner that
         will not disturb or impair the use and enjoyment of the centre by any other person. In particular you may not use
         foul, loud, or abusive language, nor will you behave in a threatening manner, nor will you molest, or harass, other
@@ -62,10 +88,17 @@
         discretion, require you to leave the premises or an area of the premises, if your attire is not considered
         suitable.</p>
         <p>Members are respectfully requested to store coats and rucksacks in the lockers provided.</p>
+    </div>
   </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">General</button>
-<div class="collapse">
+</div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFive">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        General
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>Whilst in our club, members will be need to remain a safe distance apart from others at all times.</p>
         <p>Opening times for the centre will be prominently displayed on our website.</p>
         <p>Pool, spa, sauna and steam facilities will close 15 minutes before the advertised closing time to allow members time
@@ -75,10 +108,17 @@
         authorisation form”) to consent to this usage.</p>
         <p>You must not consume any food or drink in the centre that you have brought in from outside.</p>
         <p>We reserve the right to show potential Members and other individuals the facilities of a Club on a trial basis.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Rules</button>
-<div class="collapse">
+      <div class="accordion-item">
+    <h2 class="accordion-header" id="headingSix">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        Rules
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>All members and guests visiting the centre must comply with these policies. These policies are incorporated
         into a Member’s Contract with us, and compliance with these policies
         is important both to maintain the standards at centre and to enable Members to get full enjoyment from their
@@ -94,17 +134,31 @@
         We reserve the right to make reasonable amendments to these policies, at any time. If we do this, we will give Members
         reasonable advance notice by placing the new policies on a notice board at the centre.</p>
         Words and phrases in these policies have the same meanings as given in our Membership Terms & Conditions, unless specified otherwise.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Bookings and arrivals</button>
-<div class="collapse">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingSeven">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+        Bookings and arrivals
+      </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>Advance bookings are needed to secure places for all our classes. If you have not booked, Reception will be able
         to let you know if spaces are available.</p>
         <p>Before starting a class, you’ll need to swipe in at Reception.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Lockers</button>
-<div class="collapse">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingEight">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+        Lockers
+      </button>
+    </h2>
+    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>Lockers are made available subject to availability. As a result of COVID-19, there will be limited lockers
         available to ensure safe, social distancing is adhered to.
         does not undertake that use of a locker will guarantee that no theft of or damage to your property will occur.
@@ -112,10 +166,17 @@
         that your household contents or other insurance policy protects you against any risk of theft.
         Lockers may only be used for the purposes of keeping gym kit, toiletries, and the clothing that you were wearing
         when you came to a Club.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Entrance and exists</button>
-<div class="collapse">
+   <div class="accordion-item">
+    <h2 class="accordion-header" id="headingNine">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+        Entrance and exists
+      </button>
+    </h2>
+    <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>You must use the main entrance when entering or leaving the premises.</p>
         <p>Fire exits, which are clearly marked, are there in the interests of safety and you must not interfere with fire
         doors for any reason. You must read the health & safety notices posted outside any equipment or facility rooms in
@@ -124,20 +185,34 @@
         safety.</p>
         <p>Any COVID-19 secure messages related to Health & Safety in and around the club will take precedence over other
         measures.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Car parking</button>
-<div class="collapse">
+   <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTen">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+        Car parking
+      </button>
+    </h2>
+    <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>Our car park may only be used by Members, guests, and visitors while they are on the centre premises.
         You may not leave your car in the car park at any other time (for example, you may not leave it there following
         a visit while you go shopping elsewhere).</p>
         <p>No unauthorised parking is permitted on our premises. Where car parking spaces are designated for use by Members,
         cars must be parked properly in such spaces or they will be clamped and a fee may be charged (where applicable)
         for removal of the clamp. You must be a Blue Badge holder to park in the accessible bays in our car parks.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Health and safety</button>
-<div class="collapse">
+   <div class="accordion-item">
+    <h2 class="accordion-header" id="headingEleven">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+        Health and safety
+      </button>
+    </h2>
+    <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p>You must complete a Health Commitment Statement as requested by us before using our fitness facilities.
         You should seek instruction before using unfamiliar equipment.
         Appropriate clean exercise clothing and shoes must be worn whilst exercising.
@@ -148,11 +223,18 @@
         notice) or fail to keep an appointment for services and/or exercise programmes.
         You may not use the gymnasium while under the influence of alcohol, anticoagulants, antihistamines, beta-blockers,
         narcotics, tranquilizers or any medication or other substance which may affect your ability to exercise safely.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Group exercise classes</button>
-<div class="collapse">
-      <p>You must pre-book classes to ensure your participation in them.
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwelve">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+        Group exercise classes
+      </button>
+    </h2>
+    <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p>You must pre-book classes to ensure your participation in them.
         If you can no longer attend a pre-booked session, you must cancel your booking online via our app or website or
         by calling the centre. If you are cancelling within 30 minutes of the class starting, you cannot cancel online
         and must cancel by calling the centre. If you book a class and fail to attend without cancelling more than 3
@@ -162,11 +244,18 @@
         class start time will be refused. Any spaces available at the start time will be offered to those present and
         waiting.
         An instructor may, at any time, ask you to leave a class if you are risking the safety or enjoyment of others.</p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Swimming pool and spa area</button>
-<div class="collapse">
-      <p>For reasons of health, safety and hygiene you must:
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThirteen">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+        Swimming pool and spa area
+      </button>
+    </h2>
+    <div id="collapseThirteen" class="accordion-collapse collapse" aria-labelledby="headingThirteen" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <p>For reasons of health, safety and hygiene you must:</p>
       <ul>
           <li>(a) obey the instructions of our lifeguards;</li>
           <li>(b) always shower before entering the sauna, steam room, jacuzzi or swimming pool;</li>
@@ -178,7 +267,7 @@
             materials into the sauna as these constitute a serious fire hazard;</li>
           <li>(g) not bring oils or essences to the steam room either as pouring them on the steam outlet will create a
             burn hazard.</li>
-      </ul></p>
+      </ul>
 
       <p>Management reserves the right to limit you to 20 minutes in the swimming pool if it is busy.</p>
       <p>You must: (a) wear long hair tied up, or in a swimming cap whilst in the swimming pool; (b) not run around, jump
@@ -196,10 +285,17 @@
           facilities. You should use the steam room, sauna, swimming pool and jacuzzi (where applicable) in moderation
       and under medical advice.
       </p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">COVID-19 Additional measures – Swimming pool and spa</button>
-<div class="collapse">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFourteen">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+        COVID-19 Additional measures – Swimming pool and spa
+      </button>
+    </h2>
+    <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
         <p><ol>
               <li>Family swim times will be from 9-6pm in selected clubs only with separate children’s pools.</li>
               <li>We will implement pool capacities and wider lanes.</li>
@@ -209,10 +305,17 @@
               This will be displayed in the pool area.</li>
               <li>Directional signage and/or one way systems must be followed at all times.</li>
       </ol></p>
+    </div>
+  </div>
 </div>
-<br>
-<button type="button" class="btn btn-1 collapsible" style="display:block;">Photography and Video</button>
-<div class="collapse">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFifteen">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+        COVID-19 Additional measures – Swimming pool and spa
+      </button>
+    </h2>
+    <div id="collapseFifteen" class="accordion-collapse collapse" aria-labelledby="headingFifteen" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
       <p>You must respect the rights of other members when taking photos or video in other areas of the club by not
       intentionally taking photos or videos of others. You will be requested to delete them if challenged.
       If we believe that you may have taken a photo or video footage in a restricted area or have concerns with you taking
@@ -220,23 +323,8 @@
       them if appropriate.</p>
       <p>We reserve the right to use any individual or group photographs or movie shots of you for press or promotional
       purposes.</p>
+    </div>
+  </div>
 </div>
-<br>
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
-</script>
 
 {% endblock %}

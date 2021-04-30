@@ -1,10 +1,209 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{{ url_for('templates', filename='contact.html') }}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block body_content %}
+<h1>How can we help you today?</h1>
+<p>Our FAQ section below may help to answer any questions.</p>
+<p>If you need to get in touch, please complete the form below.</p>
+
+<main class="form-contact">
+  <form method="POST" action="{{ url_for('contact') }}">
+
+    <h1 class="h3 mb-3 fw-normal">We'd love to hear from you.</h1>
+    <div>
+
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+          {{ form.name.label }} {{ form.name }}
+        <br>
+        </div>
+    </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+          {{ form.email_address.label }} {{ form.email_address(placeholder='example@getfit.com') }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            {{ form.subject.label }} {{ form.subject }}
+            <br>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+        {{ form.question.label }} {{ form.question(rows='500',cols='500') }}
+        {{ submit }}
+         <br>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <div class="border-top pt-3">
+    </div>
+  </form>
+</main>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        FAQ Gym
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>What are the qualifications of our PT teams?</strong>
+          <p>Our teams are highly skilled & qualified, completing both externally recognised training as well as internal training
+            before delivering Personal Training.  All our trainers are either registered exercise professionals (REPs) level 3
+            or Chartered Institute for the management of sport and physical activity (CIMSPA) Practitioners.</p>
+        <strong>What do I need to know about gym etiquette?</strong>
+          <p><ol>
+                <li>Please wear appropriate clothing and footwear</li>
+                <li>2. Bring a towel and wipe down the equipment after use</li>
+                <li>3. Don’t bring your bag in to the gym – use the lockers provided</li>
+                <li>Only Personal Train with our authorised Personal Trainers</li>
+                <li>Ask a member of the team to be shown equipment you haven’t used before</li>
+                <li>Don't drop your weights or dumbbells</li>
+                <li>Remove weight plates from the bar after use</li>
+                <li>Put your weights away after use</li>
+            </ol>
+          </p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        FAQ Booking
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>How far in advance can I book sessions?</strong>
+            <p>Gold members can book a full 14 days in advance and after the start time of the class on day 15. Silver members can
+                book a full 7 days in advance and after the start time of the class on day 8.</p>
+            <p>Classes become available online in real-time throughout the day, there is no 'golden time' when all classes become
+                available at once. Please don’t wait up until midnight!</p>
+            <p>Silver members can book 7 full days in advance and 8 days in advance from after the class start time of 4pm.</p>
+            <strong>What do I need to do to use the booking system?</strong>
+            <p>Please login with your email address and password, this is how we know who you are.</p>
+            <p>If you haven’t registered yet, but we hold your email address (members, for example) you'll be asked to register when
+                you when you first book.</p>
+            <p>If we don’t hold your email address, please contact the team at the centre who will be happy to add it to your account.</p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        FAQ Classes
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>What do I need to know about class etiquette?</strong>
+          <p>It’s important that you arrive on time, playing a part in the warm-up reduces the risk of injury  and our instructors
+            like to say hi, especially to our new visitors.  We’d also ask you to wear appropriate clothing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        FAQ Swimming
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <p>Swimming is unique. It is the only physical activity that can be enjoyed from birth through to older age. Every week
+            2.5 million adults go swimming. Swimming is one of the most effective ways to burn calories. A gentle swim can burn
+            over 200 calories in just half an hour, more than double that of walking, while a faster swim would see that indulgent
+            chocolate bar gone quicker than if you went running or cycling.
+            Exercising in water also makes your body work harder, so 30 minutes in a pool is worth 45 minutes of the same activity
+            on land. Water supports up to 90 per cent of the body’s weight making swimming the perfect way for people with
+            impairments, injuries or illnesses to stay active. Swimming is great at relaxing the mind and helping to de‐stress.</p>
+          <strong>Why do we have anti-wave ropes?</strong>
+          <p>Anti-wave ropes provide a more comfortable swimming environment, as the name suggests they divide the pool up and
+            prevent the turbulence/wave that maybe being generated in one area of the pool traveling across the pool into another.</p>
+          <strong>How are our swimming lessons structured?</strong>
+          <p>We follow the Swim England Learn to Swim Pathway which is an all-inclusive programme that encourages a fun approach
+            to learning. Our lessons are designed to ensure that every person that learns to swim with us develops confidence
+            and competence in the water.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFive">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        FAQ Membership
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+            <strong>How do I cancel my direct debit membership?</strong>
+            <p>We're sorry to hear that you want to leave - but did you know that Gold members can currently freeze for free for up
+             to 3 months.This means no joining fee or price increases when you come back.</p>
+            <p>You can Freeze your membership in 3 easy steps. Just log in to your Members Area, select 'Your Profile', then 'Freezing
+            or Cancelling' and follow the instructions to freeze. If you still want to cancel, once logged in select 'Freezing or
+            Cancelling ' and follow the cancellation instructions. We will then process your cancellation.
+            You need to do this no later than 3 working days before your next payment date to stop that payment being taken.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingSix">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        FAQ Safety
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>What safety standards do we work to?</strong>
+            <ul>We support the HSE’s strategic themes:
+                <li>Acting together - Promoting broader ownership of health and safety</li>
+                <li>Tackling ill health - Highlighting and tackling the costs of work-related ill health</li>
+                <li>Managing risk well - Simplifying risk management</li>
+                <li>Keeping pace with change - Anticipating and tackling new health and safety challenges</li>
+                <li>Sharing our success - Promoting the benefits of a health and safety system</li>
+                <li>More information on the above strategic themes can be found here.</li></ul>
+        <strong>How do we benchmark our standards?</strong>
+        <p>Quest is the UK Quality Scheme for Sport and Leisure designed primarily for the management of leisure facilities, sports
+            development teams and leisure development. Quest is managed on behalf of Sport England by Right Directions in
+            partnership with Leisure-net Solutions. It defines industry standards and good practice, and encourages their
+            ongoing development and delivery within a customer-focused management framework. Quest’s rigorous assessments
+            challenge even the very best leisure facilities, universities and sports development teams in the UK. The National
+            Benchmarking Service (NBS) provides critical data on the performance of leisure facilities.</p>
+        <strong>What’s our safeguarding policy?</strong>
+        <p>We recognise and support the aims of the NSPCC’s Child Protection in Sport unit which has a mission is to build the
+            capacity of sports to safeguard children and young people in and through sport and to enable sports organisations
+            to lead the way in keeping children safe from harm.</p>
+        <ul>
+            They aim to achieve this by:
+        <li>Being a lead voice, champion</li>
+        <li>Providing expert safeguarding and child protection advice</li>
+        <li>Contributing safeguarding knowledge to policies, procedures and programmes</li>
+        <li>Developing and delivering sports specific training, resources and guidance</li>
+        <li>Coordinating, lobbying and advocating on behalf of the sector in response to government consultations</li>
+        <li>Supporting research into a range of issues, developing understanding and an evidence base</li>
+            <li>Consulting with children and young people</li></ul>
+        <strong>Do you use CCTV?</strong>
+        <p>We operate CCTV throughout our centres for security, safety and good management purposes. This may also include
+            swimming pool areas (see also Poolview).</p>
+        <strong>What Lifeguarding Standards do we work to?</strong>
+        <p>All our lifeguards are qualified with the Royal Lifesaving Society (RLSS) National Pool Lifeguard Qualification
+            (NPLQ). We actively promote and participate in the ukactive Code of Practice to raise standards within the sector.</p>
+        <strong>Do we have defibrillators on site?</strong>
+        <p>All our leisure centres are equipped with an AED (Automated External Defibrillators) and trained staff are on duty
+            at all times.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
