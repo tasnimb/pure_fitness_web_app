@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 
 from application.forms import LoginForm, RegistrationForm, BookActivity, Password_Reset
-from application import app, db, flask_change_password
+from application import app, db
 from application.models import CustomerContact, CustomerLogin, Activity, ActivityBook
 
 
@@ -23,10 +23,6 @@ def home():
     return render_template('home.html', title='Home')
 
 
-def openLogin():
-    return redirect(url_for('login'))
-
-
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title='Contact')
@@ -40,16 +36,24 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-
         user = CustomerLogin.query.filter_by(email_address=email).first()
         if not user or not check_password_hash(user.password, password):
             flash("Please check your login details or sign-up for an account below.")
-
+            session["user"] = user
         else:
             return redirect(url_for('dashboard'))
 
     return render_template("login.html", title="login", form=form, error=flash)
 
+
+@app.route('/dashboard')
+def dashboard():
+    if "user" in session:
+        user = session["user"]
+        return f"<h1>{user}</h1>"
+    else:
+        return redirect(url_for('login'))
+    # return render_template('dashboard.html', title='Members Area')
 
 @app.route('/logout')
 def logout():
@@ -86,12 +90,6 @@ def register():
 def profile():
 
     return render_template('profile.html', title='profile')
-
-@app.route('/dashboard')
-def dashboard():
-    form=LoginForm()
-    username=db.session.query(CustomerContact).filter_by(first_name=form.email.data).first()
-    return render_template('dashboard.html', title='Members Area',username=username)
 
 
 @app.route('/book', methods=['GET'])
