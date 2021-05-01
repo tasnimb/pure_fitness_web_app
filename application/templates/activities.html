@@ -1,4 +1,8 @@
-{% extends "layout.html" %}
+{% if current_user.is_authenticated %}
+    {% extends "logged_layout.html" %}
+{%else%}
+    {% extends "layout.html" %}
+{% endif %}
 
 {{ url_for('templates', filename='activities.html') }}
 
@@ -34,14 +38,20 @@
       </table>
 </div>
 <br>
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('booking') }}">
+   <button>Book</button>
+    </a>
+{%else%}
     <a href="{{ url_for('login') }}">
-   <button>Login</button>
-</a>
+    <button>Login</button>
+    </a>
 <div class="border-top pt-3">
         <small class="text-muted">
             Login or Register now to book a Class. <a class="ml-2" href="{{ url_for('login') }}">Register here</a>
         </small>
     </div>
+{% endif %}
 
 <br>
 <br>

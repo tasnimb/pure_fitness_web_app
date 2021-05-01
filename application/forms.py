@@ -5,7 +5,8 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import DateField
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
-
+from .models import User
+from application import db
 
 gender = ('Female', 'Male')
 
@@ -13,23 +14,23 @@ gender = ('Female', 'Male')
 class RegistrationForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
     last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email(message='Enter a valid email')])
     date_of_birth = DateField('Date-of-birth', format='%Y-%m-%d')
-    email_address = StringField('Email', validators=[DataRequired(), Length(min=6, max=35)])
     phone_number = IntegerField('Phone', validators=[DataRequired(), Length(min=4, max=25)]) # check out regex
-    address_line = StringField('Address', validators=[DataRequired(), Length(min=5, max=50)])
-    post_code = StringField('Postcode', validators=[DataRequired(), Length(min=8, max=10)])
+    address = StringField('Address', validators=[DataRequired(), Length(min=5, max=50)])
+    postcode = StringField('Postcode', validators=[DataRequired(), Length(min=8, max=10)])
     city = StringField('City', validators=[DataRequired(), Length(min=2, max=20)])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(),Length(min=6,
+                                   message='Select a stronger password.')])
     confirm_password = PasswordField('Confirm Password',
-                                     validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign Up')
+                                     validators=[DataRequired(), EqualTo('password',message='Passwords must match.')])
+    submit = SubmitField('Register')
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember = BooleanField('Remember Me')
-    Login = SubmitField('Login')
+    email = StringField('Email',validators=[DataRequired(),Email(message='Enter a valid email.')])
+    password = PasswordField('Password',validators=[DataRequired(),Length(min=6,message='Select a stronger password.')])
+    submit = SubmitField('Log In')
 
 
 class PasswordReset(FlaskForm):
@@ -46,7 +47,7 @@ class Qns(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=5, max=100)])
     email_address = StringField('Email', validators=[DataRequired(), Email()])
     subject = SelectField('Subject', validators=[DataRequired()], choices=subjects)
-    question = TextAreaField('Question/Comment', [validators.required(), validators.length(max=500)], widget=TextArea())
+    question = StringField('Question/Comment', validators=[DataRequired(), Length(min=10, max=500)])
     submit = SubmitField('Submit')
 
 
@@ -60,6 +61,7 @@ class BookedActivity(FlaskForm):
     activity_type = SelectField('Class', validators=[DataRequired()], choices=activity)
     timeslot = SelectField('Timeslot', validators=[DataRequired()], choices=timeslot)
     submit = SubmitField('Book')
+
 
 
 class DeleteBooking(FlaskForm):

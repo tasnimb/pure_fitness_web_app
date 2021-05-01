@@ -40,7 +40,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ url_for('profile') }}">PROFILE</a>
+          <a class="nav-link active"  href="{{ url_for('home') }}">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{{ url_for('profile') }}">PROFILE</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{{ url_for('dashboard') }}">DASHBOARD</a>
@@ -48,6 +51,10 @@
 
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('booking') }}" >BOOK A CLASS</a>
+        </li>
+
+       <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('book') }}" >GYM CLASSES</a>
         </li>
 
       </ul>
@@ -101,6 +108,8 @@
                 <li class="footer-item"><a href="{{ url_for('home') }}">Home</a></li>
                 <li class="footer-item"><a href="{{ url_for('policy') }}">Our Policy</a></li>
                 <li class="footer-item"><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                <li class="footer-item"><a href="{{url_for('home')}} #about">About Us</a></li>
+
             </ul>
         </div>
 

@@ -5,93 +5,50 @@
 {% block title %}MyBookings{% endblock %}
 
 {% block body_content %}
-<div class="row justify-content-center">
-   <div class="col-md-8 col-12">
-        <h1>My current bookings</h1>
-        <p>Any current bookings are shown in the table below. </p>
-   </div>
-</div>
-
-<input type="hidden" id="username" name="username" value={{ username }}>
-
-<table class="table table-striped" style="width:70%; margin-left:15%; margin-right:15%;">
+<h1>My Bookings</h1>
+<h2>Current bookings</h2>
+<p>Your current bookings are shown in the table below. </p>
+<table>
   <thead>
     <tr>
-        <th>Booking Id</th>
         <th>Date</th>
         <th>Class</th>
-        <th>Timeslot</th>
+        <th>Class</th>
     </tr>
     </thead>
-    <tbody>
-     {% for BookedActivity in current  %}
-            <tr>
-                <td>{{ BookedActivity.booking_id }}</td>
-                <td>{{ BookedActivity.date }}</td>
-                <td>{{ BookedActivity.activity_type }}</td>
-                <td>{{ BookedActivity.timeslot }}</td>
-            </tr>
-            {# endif #}
-        {% endfor %}
+<!--    <tbody>-->
+<!--     {% for BookedActivity in booking_class  %}-->
+<!--&lt;!&ndash;            {% if BookActivity.date <= BookActivity.date.now() %}&ndash;&gt;-->
+<!--            <tr>-->
+<!--                <td>{{ BookedActivity.date }}</td>-->
+<!--                <td>{{ BookedActivity.timeslot }}</td>-->
+<!--                <td>{{ BookedActivity.class }}</td>-->
+<!--            </tr>-->
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+<!--        {% endfor %}-->
     </tbody>
 </table>
-<hr>
-<main class="form-del_booking">
-  <form class="container" method="POST" action="{{ url_for('my_bookings') }}">
-      <div class="row justify-content-center">
-          <div class="col-md-8 col-12">
-              <h1 class="h3 mb-3 fw-normal">Delete a booking?</h1>
-        </div>
-      </div>
-
-   <div class="row justify-content-center">
-        <div class="col-md-8 col-12 mb-2 ">
-
-      {{ form.hidden_tag() }}
-        <br>
-              {{ form.booking_id.label }} {{ form.booking_id(placeholder="Id number") }}
-              <br>
-    </div>
-   <div class="row justify-content-center">
-            <div class="col-md-8 col-12 mb-2 ">
-              {{ form.confirm_id.label }} {{ form.confirm_id(placeholder="Id number") }}
-            </div>
-   </div>
-   <div class="row justify-content-center">
-        <div class="col-md-8 col-12">
-            </div>
-                {{ form.submit(class="btn btn-primary") }}
-            </div>
-        </div>
-    </div>
-  </form>
-</main>
-<hr>
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-12">
-            <h2>Past bookings</h2>
-                <p>The table below displays any previous classes you have attended.</p>
-        </div>
-      </div>
-
-<table class="table table-striped" style="width:70%; margin-left:15%; margin-right:15%;">
-  <thead>
-    <tr>
-        <th>Date</th>
-        <th>Class</th>
-        <th>Timeslot</th>
-    </tr>
-    </thead>
-    <tbody>
-     {% for BookActivity in past  %}
-            <tr>
-                <td>{{ BookActivity.date }}</td>
-                <td>{{ BookActivity.activity_type }}</td>
-                <td>{{ BookActivity.timeslot }}</td>
-            </tr>
-            {# endif #}
-        {% endfor %}
-    </tbody>
+<!--<h2>Past bookings</h2>-->
+<!--<p>The table below displays the previous classes you have attended.</p>-->
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--        <th>Date</th>-->
+<!--        <th>Session name</th>-->
+<!--        <th>Instructor</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--     {% for BookActivity in booking_class  %}-->
+<!--            {% if BookActivity.date > BookActivity.date.now() %}-->
+<!--            <tr>-->
+<!--                <td>{{ BookActivity.date }}</td>-->
+<!--                <td>{{ BookActivity.timeslot }}</td>-->
+<!--                <td>{{ BookActivity.class }}</td>-->
+<!--            </tr>-->
+<!--            {% endif %}-->
+<!--        {% endfor %}-->
+<!--    </tbody>-->
 </table>
 </div>
 <br>

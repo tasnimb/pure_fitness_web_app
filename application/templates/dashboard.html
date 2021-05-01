@@ -21,15 +21,12 @@
 </head>
 
 
-
 {% block body_content %}
-<input type="hidden" id="username" name="username" value={{ username }}>
 <div class="container-fluid quote-container " >
     <div class="row justify-content-center ">
 
 
-<!--<h1>{{user}} </h1>-->
-        <!-- Quote Box -->
+
         <div class="quote-box">
 
             <!-- Front part of the Quote Box -->
@@ -84,6 +81,9 @@
 
         </div>
    </div>
+
+<h1>Welcome, {{user}}!</h1>
+
 
 <div class="container main-container">
     <div class="row justify-content-center">
@@ -156,7 +156,7 @@
     <div class="row justify-content-center">
         <div class="col-md-3 col-12 member-benefit">
             <img src="{{url_for('static',filename='images/benefit1.png')}}" alt="" width="250px" height="250px">
-            
+
         </div>
          <div class="col-md-3 col-12 member-benefit">
             <img src="{{url_for('static',filename='images/benefit2.png')}}" alt="" width="250px" height="250px">
@@ -187,4 +187,3 @@
  <script src="{{url_for ('static', filename='member.js')}}"></script>
 
 {% endblock %}
-
