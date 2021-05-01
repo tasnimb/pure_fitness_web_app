@@ -5,14 +5,11 @@
 {% block title %}Contact Us{% endblock %}
 
 {% block body_content %}
-<h1>How can we help you today?</h1>
-<p>Our FAQ section below may help to answer any questions.</p>
+<h2>How can we help you today?</h2>
 <p>If you need to get in touch, please complete the form below.</p>
 
 <main class="form-contact">
   <form method="POST" action="{{ url_for('contact') }}">
-
-    <h1 class="h3 mb-3 fw-normal">We'd love to hear from you.</h1>
     <div>
 
     </div>
@@ -35,7 +32,7 @@
     </div>
     <div class="form-row">
         <div class="col-md-4 mb-3">
-        {{ form.question.label }} {{ form.question(rows='500',cols='500') }}
+        {{ form.question.label }} {{ form.question(cols="50", rows="5", id='larger',maxlength=500, placeholder='Max. 500 characters') }}
         {{ submit }}
          <br>
         </div>
@@ -45,7 +42,8 @@
     </div>
   </form>
 </main>
-
+<h2>Frequently Asked Questions</h2></h2>
+<p>Our FAQ section below may help to answer any questions.</p>
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
@@ -62,8 +60,8 @@
         <strong>What do I need to know about gym etiquette?</strong>
           <p><ol>
                 <li>Please wear appropriate clothing and footwear</li>
-                <li>2. Bring a towel and wipe down the equipment after use</li>
-                <li>3. Don’t bring your bag in to the gym – use the lockers provided</li>
+                <li>Bring a towel and wipe down the equipment after use</li>
+                <li>Don’t bring your bag in to the gym – use the lockers provided</li>
                 <li>Only Personal Train with our authorised Personal Trainers</li>
                 <li>Ask a member of the team to be shown equipment you haven’t used before</li>
                 <li>Don't drop your weights or dumbbells</li>

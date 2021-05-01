@@ -1,7 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateField, SelectField, HiddenField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, DateField, SelectField, \
+    HiddenField, validators
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import DateField
+from wtforms import TextAreaField
+from wtforms.widgets import TextArea
 
 
 gender = ('Female', 'Male')
@@ -29,7 +32,7 @@ class LoginForm(FlaskForm):
     Login = SubmitField('Login')
 
 
-class Password_Reset(FlaskForm):
+class PasswordReset(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     new_password = PasswordField('Password', validators=[DataRequired()])
     confirm_new_password = PasswordField('Confirm Password',
@@ -43,7 +46,7 @@ class Qns(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=5, max=100)])
     email_address = StringField('Email', validators=[DataRequired(), Email()])
     subject = SelectField('Subject', validators=[DataRequired()], choices=subjects)
-    question = StringField('Question/Comment', validators=[DataRequired(), Length(min=10, max=500)])
+    question = TextAreaField('Question/Comment', [validators.required(), validators.length(max=500)], widget=TextArea())
     submit = SubmitField('Submit')
 
 

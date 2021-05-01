@@ -1,12 +1,12 @@
-from flask import Flask,g, render_template, request, url_for, redirect, flash, session
+from flask import Flask, g, render_template, request, url_for, redirect, flash, session
 from datetime import timedelta
-from application.forms import LoginForm, RegistrationForm, BookedActivity, Password_Reset, Qns
+from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns
 from application import app, db
 from application.models import CustomerContact, CustomerLogin, Activity, ActivityBooked, Faq
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import desc, func
 
-
-app.permanent_session_lifetime=timedelta(minutes=1)
+app.permanent_session_lifetime = timedelta(minutes=60)
 
 
 # @app.before_request
@@ -39,27 +39,28 @@ def login():
         session.permanent = True
 
         user = CustomerLogin.query.filter_by(email_address=email).first()
-        user2 = email
+        username = email
         if not user or not check_password_hash(user.password, password):
             flash("Please check your login details or sign-up for an account below.")
 
         else:
 
-            session["user2"] = user2
-            if "user2" in session:
-                return redirect(url_for('dashboard'))
+            session["username"] = username
+            if "username" in session:
+                return redirect(url_for('dashboard', username=username))
 
     return render_template("login.html", title="login", form=form, error=flash)
 
 
-@app.route('/dashboard')
+@app.route('/dashboard/')
 def dashboard():
-    if "user2" in session:
-        user2 = session["user2"]
-        return render_template('dashboard.html',user=user2)
+    if "username" in session:
+        username = session["username"]
+        #email_address = request.form.get('email')
+        return render_template('dashboard.html', username=username)
     else:
         return redirect(url_for('login'))
-    # return render_template('dashboard.html', title='Members Area')
+    #return render_template('dashboard.html', title='Members Area')
 
 
 @app.route('/logout')
@@ -101,31 +102,38 @@ def profile():
 @app.route('/book', methods=['GET'])
 def book():
     activities = db.session.query(Activity).all()
-    return render_template('activities.html', title='Book', activities=activities)
+    return render_template('activities.html', title='Book a class', activities=activities)
 
 
 @app.route('/booking', methods=['GET', 'POST'])
 def booking():
     form = BookedActivity()
+    if "username" in session:
+        username = session["username"]
 
-    if request.method == 'POST':
-        email_address = request.form.get('email_address')
-        booked = ActivityBooked(email_address=form.email_address.data,
-                                date=form.date.data,
-                                activity_type=form.activity_type.data,
-                                timeslot=form.timeslot.data)
-        db.session.add(booked)
-        db.session.commit()
-        flash('Thanks for booking!')
-        return redirect(url_for('my_bookings'))
+        if request.method == 'POST':
+            if "username" in session:
+                username = session["username"]
+                booked = ActivityBooked(email_address=username,
+                                        date=form.date.data,
+                                        activity_type=form.activity_type.data,
+                                        timeslot=form.timeslot.data)
+                db.session.add(booked)
+                db.session.commit()
+                flash('Thanks for booking!')
+                return redirect(url_for('my_bookings', username=username))
     return render_template('booking.html', title='Book Class', form=form)
 
 
 @app.route('/my_bookings')
 def my_bookings():
-    # # email_address = request.form.get('email_address')
-    # booking_class = BookedActivity.query.filter(BookedActivity.email_address == email_address).all()
-    return render_template('my_bookings.html', title='my_bookings')
+    if "username" in session:
+        username = session["username"]
+        current = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == username, ActivityBooked.date
+                                                          >= func.current_date()).order_by(ActivityBooked.date).all()
+        past = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == username, ActivityBooked.date <
+                                                       func.current_date()).order_by(ActivityBooked.date).all()
+    return render_template('my_bookings.html', username=username, current=current, past=past, title='My Bookings')
 
 
 @app.route('/policy')
@@ -135,7 +143,7 @@ def policy():
 
 @app.route('/password_reset', methods=['GET', 'POST'])
 def password_reset():
-    form = Password_Reset()
+    form = PasswordReset()
     if request.method == 'POST':
         try:
             email = form.email.data
@@ -169,5 +177,5 @@ def contact():
 
 @app.route('/contact_feedback/<email_address>')
 def contact_feedback(email_address):
-    comment = Faq.query.filter(Faq.email_address == email_address).all()
+    comment = Faq.query.filter(Faq.email_address == email_address).first()
     return render_template('contact_feedback.html', comment=comment, title='My Contact')
