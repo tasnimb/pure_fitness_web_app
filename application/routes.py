@@ -31,7 +31,7 @@ def login():
         return redirect(url_for('dashboard'))
     error = ""
     form = LoginForm()
-    if request.method == "POST" and form.validate():
+    if request.method == "POST":
 
         email = request.form.get('email')
         password = request.form.get('password')
@@ -43,7 +43,7 @@ def login():
 
         else:
             login_user(user)
-            flash(f'Login successful{user.first_name}',category='success')
+            flash(f'Login successful {user.first_name}',category='success')
 
 
             return redirect(url_for('dashboard'))
@@ -66,13 +66,10 @@ def logout():
     return redirect(url_for('login'))
 
 
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
-
     form = RegistrationForm()
     if request.method == 'POST':
         first_name = form.first_name.data,
@@ -170,7 +167,7 @@ def password_reset():
         try:
             email = form.email.data
             password = form.confirm_new_password.data
-            user = User.query.filter_by(email_address=email).first()
+            user = User.query.filter_by(email=email).first()
             user.password = generate_password_hash(password, method='sha256')
             db.session.commit()
             flash('Your password has been updated!')
@@ -209,7 +206,7 @@ def delete_account():
     if request.method == "POST":
         try:
             email = request.form.get('email')
-            user = User.query.filter_by(email_address=email).first()
+            user = User.query.filter_by(email=email).first()
             db.session.delete(user)
             db.session.commit()
             flash('Your account has been deleted.')
