@@ -54,8 +54,9 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    user=current_user.first_name
-    return render_template('dashboard.html',user=user)
+    user = User.query.filter_by(id=current_user.id).first()
+
+    return render_template('dashboard.html',user=user.first_name)
 
 
 @app.route('/logout')
