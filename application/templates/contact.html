@@ -5,9 +5,12 @@
 {% block title %}Contact Us{% endblock %}
 
 {% block body_content %}
-<h2>How can we help you today?</h2>
-<p>If you need to get in touch, please complete the form below.</p>
-
+<div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+            <h2>How can we help you today?</h2>
+                <p>If you need to get in touch, please complete the form below.</p>
+        </div>
+      </div>
 <main class="form-contact">
   <form method="POST" action="{{ url_for('contact') }}">
     <div>
@@ -42,9 +45,14 @@
     </div>
   </form>
 </main>
-<h2>Frequently Asked Questions</h2></h2>
-<p>Our FAQ section below may help to answer any questions.</p>
-<div class="accordion" id="accordionExample">
+
+<div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+            <h2>Frequently Asked Questions</h2>
+                <p>Our FAQ section below may help to answer any questions.</p>
+        </div>
+</div>
+    <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">

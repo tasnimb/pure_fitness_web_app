@@ -6,10 +6,51 @@
     {% block title %}My profile{% endblock %}
 
 
-
 {% block body_content %}
 <h1>
     {{g.user}}
 </h1>
+<div class="container">
+<div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+
+<div class="card" style="width: 80%;">
+  <img src="/static/images/profile.jpg" id=gym_pic  class="card-img-top" alt="Friends at Pure Fitness">
+  <div class="card-body">
+
+    <h5 class="card-title"><strong>{{ info.first_name }}'s</strong> profile</h5>
+    <p class="card-text">Your details below are listed below. It's great to have you part of the Pure Fitness family.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>First name: </strong>{{ info.first_name }}</li>
+    <li class="list-group-item"><strong>Last name: </strong>{{ info.last_name }}</li>
+    <li class="list-group-item"><strong>Email: </strong> {{ info.email }}</li>
+    <li class="list-group-item"><strong>Date of birth: </strong>{{ info.date_of_birth }}</li>
+    <li class="list-group-item"><strong>Phone Number: </strong>{{ info.phone_number }}</li>
+    <li class="list-group-item"><strong>Address: </strong>{{ info.address_line }}</li>
+    <li class="list-group-item"><strong>City: </strong>{{ info.city }}</li>
+    <li class="list-group-item"><strong>Postcode: </strong>{{ info.postcode }}</li>
+    <li class="list-group-item"><strong>Membership: </strong>are we going to add membership type/status here?</li>
+  </ul>
+
+  <div class="card-body">
+    <a href="#" class="card-link">Clickto change password</a>
+    <a href="#" class="card-link">Click to update details</a>
+  </div>
+</div>
+</div>
+</div>
+<p>If your details change, please update these as soon as possible so we can keep in touch with you.</p>
+</container>
+<script>
+window.onload = choosePic;
+
+var myPix = new Array("static/images/profile.jpg","static/images/profile1.jpg","static/images/profile2.jpg");
+
+function choosePic() {
+     var randomNum = Math.floor(Math.random() * myPix.length);
+     document.getElementById("gym_pic").src = myPix[randomNum];
+     }
+</script>
 
 {% endblock %}

@@ -20,7 +20,7 @@ class RegistrationForm(FlaskForm):
     address = StringField('Address', validators=[DataRequired(), Length(min=5, max=50)])
     postcode = StringField('Postcode', validators=[DataRequired(), Length(min=8, max=10)])
     city = StringField('City', validators=[DataRequired(), Length(min=2, max=20)])
-    password = PasswordField('Password', validators=[DataRequired(),Length(min=6,
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6,
                                    message='Select a stronger password.')])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password',message='Passwords must match.')])
@@ -28,8 +28,8 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email',validators=[DataRequired(),Email(message='Enter a valid email.')])
-    password = PasswordField('Password',validators=[DataRequired(),Length(min=6,message='Select a stronger password.')])
+    email = StringField('Email', validators=[DataRequired(), Email(message='Enter a valid email.')])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, message='Select a stronger password.')])
     submit = SubmitField('Log In')
 
 
@@ -47,7 +47,7 @@ class Qns(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=5, max=100)])
     email_address = StringField('Email', validators=[DataRequired(), Email()])
     subject = SelectField('Subject', validators=[DataRequired()], choices=subjects)
-    question = StringField('Question/Comment', validators=[DataRequired(), Length(min=10, max=500)])
+    question = TextAreaField('Question/Comment', [validators.required(), validators.length(max=500)], widget=TextArea())
     submit = SubmitField('Submit')
 
 
@@ -61,7 +61,6 @@ class BookedActivity(FlaskForm):
     activity_type = SelectField('Class', validators=[DataRequired()], choices=activity)
     timeslot = SelectField('Timeslot', validators=[DataRequired()], choices=timeslot)
     submit = SubmitField('Book')
-
 
 
 class DeleteBooking(FlaskForm):

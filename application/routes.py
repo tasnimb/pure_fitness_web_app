@@ -1,17 +1,19 @@
-from flask import Flask, g, render_template, request, url_for, redirect, flash, session
+from flask import Flask, g, render_template, request, url_for, redirect, flash
 from datetime import timedelta, date
 from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns, DeleteBooking, DeleteAccount
-from application import app, db,login_manager
+from application import app, db, login_manager
 from application.models import User, Activity, ActivityBooked, Faq
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import desc, func, delete
-from flask_login import login_user,logout_user,current_user,login_required
+from flask_login import login_user, logout_user, current_user, login_required
 
 app.permanent_session_lifetime = timedelta(minutes=60)
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -43,8 +45,7 @@ def login():
 
         else:
             login_user(user)
-            flash(f'Login successful {user.first_name}',category='success')
-
+            flash(f'Login successful {user.first_name}', category='success')
 
             return redirect(url_for('dashboard'))
 
@@ -56,7 +57,7 @@ def login():
 def dashboard():
     user = User.query.filter_by(id=current_user.id).first()
 
-    return render_template('dashboard.html',user=user.first_name)
+    return render_template('dashboard.html', user=user.first_name)
 
 
 @app.route('/logout')
@@ -82,10 +83,9 @@ def register():
         city = form.city.data,
         password = form.password.data
 
-
-        details=User(first_name=first_name,last_name=last_name,email=email,date_of_birth=date_of_birth,
-                     phone_number=phone_number,address=address_line,
-                     postcode=postcode,city=city,password=generate_password_hash(password, method='sha256'))
+        details = User(first_name=first_name, last_name=last_name, email=email, date_of_birth=date_of_birth,
+                     phone_number=phone_number, address=address_line,
+                     postcode=postcode, city=city, password=generate_password_hash(password, method='sha256'))
 
         db.session.add(details)
         db.session.commit()
@@ -97,8 +97,9 @@ def register():
 @app.route('/profile')
 @login_required
 def profile():
-
-    return render_template('profile.html', title='profile')
+    if current_user.is_authenticated:
+        info = db.session.query(User).filter(User.id == current_user.get_id()).first()
+        return render_template('profile.html', info=info, title='Profile')
 
 
 @app.route('/book')
@@ -110,34 +111,35 @@ def book():
 @app.route('/booking', methods=['GET', 'POST'])
 def booking():
     form = BookedActivity()
-    if "username" in session:
-        username = session["username"]
-
+    if current_user.is_authenticated:
         if request.method == 'POST':
-            if "username" in session:
-                username = session["username"]
-                if form.date.data > date.today():
-                    booked = ActivityBooked(email_address=username,
-                                            date=form.date.data,
-                                            activity_type=form.activity_type.data,
-                                            timeslot=form.timeslot.data)
-                    db.session.add(booked)
-                    db.session.commit()
-                    flash('Thanks for booking!')
-                    return redirect(url_for('my_bookings', username=username))
-                else:
-                    flash("Cannot book dates in the past.")
+            if form.date.data > date.today():
+                result = db.session.query(User, ActivityBooked).filter(User.email==ActivityBooked.email_address,
+                                                            User.id==current_user.get_id()).first()
+                booked = ActivityBooked(email_address=result.ActivityBooked.email_address,
+                                         date=form.date.data,
+                                         activity_type=form.activity_type.data,
+                                         timeslot=form.timeslot.data)
+                db.session.add(booked)
+                db.session.commit()
+                flash('Thanks for booking!')
+                return redirect(url_for('my_bookings'))
+        else:
+            flash("Please make your selection.")
     return render_template('booking.html', title='Book Class', form=form)
 
 
 @app.route('/my_bookings', methods=['GET', 'POST', 'DELETE'])
 def my_bookings():
-    if "username" in session:
-        username = session["username"]
-        current = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == username, ActivityBooked.date
+    if current_user.is_authenticated:
+        result = db.session.query(User, ActivityBooked).filter(User.email == ActivityBooked.email_address,
+                                                               User.id == current_user.get_id()).first()
+        email_address = result.ActivityBooked.email_address
+        current = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == email_address, ActivityBooked.date
                                                           >= func.current_date()).order_by(ActivityBooked.date).all()
-        past = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == username, ActivityBooked.date <
+        past = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == email_address, ActivityBooked.date <
                                                        func.current_date()).order_by(ActivityBooked.date).all()
+
     form = DeleteBooking()
     if request.method == "POST":
         try:
@@ -146,13 +148,11 @@ def my_bookings():
             db.session.delete(activity)
             db.session.commit()
             flash('Your booking has been cancelled.')
-            return redirect(url_for('my_bookings', username=username))
-        except ValueError:
-            flash("The booking cannot be deleted. Please contact our centre for support")
+            return redirect(url_for('my_bookings'))
         except:
             flash("The booking cannot be deleted. Please contact our centre for support")
 
-    return render_template('my_bookings.html', username=username, current=current, past=past, form=form, title='My Bookings')
+    return render_template('my_bookings.html', current=current, past=past, form=form, title='My Bookings')
 
 
 @app.route('/policy')

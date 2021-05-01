@@ -21,53 +21,39 @@
     <h1 class="h3 mb-3 fw-normal">Book an Activity</h1>
 
     <div class="form-floating">
-              <br>
+         <br>
             <dl>
-                <dd>
-                        <br>
-                    <div class="form-floating">
-                      {{ form.email_address.label }} {{ form.email_address }}
-                        <br>
+               <dd>
+                    <div class="form-row">
+                        <div class="centre">
+                            {{ form.date.label }} {{ form.date }}
+                            <br>
+                        </div>
                     </div>
-                    <br>
-                    <div class="form-floating">
-                      {{ form.date.label }} {{ form.date }}
-                        <br>
+                   <br>
+                    <div class="form-row">
+                    <div class="centre">
+                            {{ form.activity_type.label }} {{ form.activity_type }}
+                            <br>
+                        </div>
                     </div>
-                    <br>
-                    <div class="form-floating">
-                      {{ form.activity_type.label }} {{ form.activity_type }}
-                        <br>
+                   <br>
+                  <div class="form-row">
+                    <div class="centre">
+                            {{ form.timeslot.label }} {{ form.timeslot }}
+                            <br>
                     </div>
-                    <br>
-                    <div class="form-floating">
-                        <br>
-                    </div>
-                    <br>
-                    <div class="form-floating">
-                    {{ form.timeslot.label }} {{ form.timeslot }}
-                        <br>
-                    </div>
-
-                    {{ message }}
                 </dd>
             </dl>
-<!--            <p><input type=submit value=Book>-->
 
-<!--    <div class="checkbox mb-3">-->
-<!--      <label>-->
-<!--        <input type="checkbox" value="remember-me"> Remember me-->
-<!--      </label>-->
-<!--    </div>-->
-<!--    <button class="btn btn-primary" type="submit">Book</button>-->
+            {{ form.submit(class="btn btn-primary") }}
+
     <div class="border-top pt-3">
         <small class="text-muted">
             Having difficulty booking? <a class="ml-2" href="{{ url_for('contact') }}">Contact Us</a>
         </small>
     </div>
 
-
-    {{ form.submit(class="btn btn-primary") }}
     </div>
   </form>
 </main>

@@ -5,55 +5,94 @@
 {% block title %}MyBookings{% endblock %}
 
 {% block body_content %}
-<h1>My Bookings</h1>
-<h2>Current bookings</h2>
-<p>Your current bookings are shown in the table below. </p>
-<table>
+<div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+            <h2>Current bookings</h2>
+                <p>Your current bookings are shown in the table below.</p>
+        </div>
+      </div>
+<table class="table table-striped" style="width:70%; margin-left:15%; margin-right:15%;">
   <thead>
     <tr>
+        <th>Booking Id</th>
         <th>Date</th>
         <th>Class</th>
-        <th>Class</th>
+        <th>Timeslot</th>
     </tr>
     </thead>
     <tbody>
-     {% for BookedActivity in booking_class  %}
-            {% if BookActivity.date <= BookActivity.date.now() %}
+     {% for ActivityBooked in current  %}
             <tr>
-                <td>{{ BookedActivity.date }}</td>
-                <td>{{ BookedActivity.timeslot }}</td>
-                <td>{{ BookedActivity.class }}</td>
+                <td>{{ ActivityBooked.booking_id }}</td>
+                <td>{{ ActivityBooked.date }}</td>
+                <td>{{ ActivityBooked.activity_type }}</td>
+                <td>{{ ActivityBooked.timeslot }}</td>
             </tr>
-            {% endif %}
         {% endfor %}
     </tbody>
 </table>
-<h2>Past bookings</h2>
-<p>The table below displays the previous classes you have attended.</p>
-<table>
+<hr>
+<main class="form-del_booking">
+  <form class="container" method="POST" action="{{ url_for('my_bookings') }}">
+      <div class="row justify-content-center">
+          <div class="col-md-8 col-12">
+              <h1 class="h3 mb-3 fw-normal">Cancel a booking</h1>
+        </div>
+      </div>
+
+   <div class="row justify-content-center">
+        <div class="col-md-8 col-12 mb-2 ">
+
+      {{ form.hidden_tag() }}
+
+              {{ form.booking_id.label }} {{ form.booking_id(placeholder="Id number") }}
+              <br>
+    </div>
+   <div class="row justify-content-center">
+            <div class="col-md-8 col-12 mb-2 ">
+              {{ form.confirm_id.label }} {{ form.confirm_id(placeholder="Id number") }}
+            </div>
+   </div>
+
+
+            </div>
+<div class="justify-content-center">
+    <div class="col-md-8 col-12 mb-2 ">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </div>
+  </form>
+</main>
+<hr>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+            <h2>Past bookings</h2>
+                <p>The table below displays any previous classes you have attended.</p>
+        </div>
+      </div>
+<table class="table table-striped" style="width:70%; margin-left:15%; margin-right:15%;">
   <thead>
     <tr>
         <th>Date</th>
-        <th>Session name</th>
-        <th>Instructor</th>
+        <th>Class</th>
+        <th>Timeslot</th>
     </tr>
     </thead>
     <tbody>
-     {% for BookActivity in booking_class  %}
-            {% if BookActivity.date > BookActivity.date.now() %}
+     {% for ActivityBooked in past  %}
             <tr>
-                <td>{{ BookActivity.date }}</td>
-                <td>{{ BookActivity.timeslot }}</td>
-                <td>{{ BookActivity.class }}</td>
+                <td>{{ ActivityBooked.date }}</td>
+                <td>{{ ActivityBooked.activity_type }}</td>
+                <td>{{ ActivityBooked.timeslot }}</td>
             </tr>
-            {% endif %}
         {% endfor %}
     </tbody>
 </table>
 </div>
 <br>
     <a href="{{ url_for('booking') }}">
-   <button>Book</button>
+
+   <button class="btn btn-primary">Book</button>
 </a>
 <div class="border-top pt-3">
         <small class="text-muted">

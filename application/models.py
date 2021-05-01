@@ -1,10 +1,5 @@
-from flask import Flask
-from application import app, db,login_manager
-from datetime import date
-from flask_login import UserMixin
-
-from flask import Flask,redirect,url_for
-from application import app, db,login_manager
+from flask import Flask, redirect, url_for
+from application import app, db, login_manager
 from datetime import date
 from flask_login import UserMixin
 
@@ -13,12 +8,13 @@ from flask_login import UserMixin
 def load_user(user_id):
     return User.query.get(user_id)
 
+
 @login_manager.unauthorized_handler
 def unauthorized():
     return redirect(url_for('login'))
 
 
-class User(UserMixin,db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(30), nullable=False,unique=False)
@@ -30,7 +26,6 @@ class User(UserMixin,db.Model):
     postcode = db.Column(db.String(8))
     city = db.Column(db.String(20))
     password = db.Column(db.String(200),primary_key=False, unique=False,nullable=False)
-
 
 
 class Activity(db.Model):

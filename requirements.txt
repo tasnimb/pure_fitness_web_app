@@ -3,6 +3,8 @@ SQLAlchemy~=1.4.6
 flask_wtf
 flask-wtf
 wtforms~=2.3.3
+flask_login
+datetime
 
 Werkzeug~=1.0.1
 PyMySQL~=1.0.2
