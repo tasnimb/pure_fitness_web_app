@@ -60,3 +60,9 @@ class BookedActivity(FlaskForm):
     activity_type = SelectField('Class', validators=[DataRequired()], choices=activity)
     timeslot = SelectField('Timeslot', validators=[DataRequired()], choices=timeslot)
     submit = SubmitField('Book')
+
+
+class DeleteBooking(FlaskForm):
+    booking_id = IntegerField('Booking Id', validators=[DataRequired(), Length(min=4, max=25)])
+    confirm_id = IntegerField('Confirm Booking Id', validators=[DataRequired(), Length(min=4, max=25)])
+    submit = SubmitField('Delete Booking')

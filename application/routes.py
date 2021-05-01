@@ -1,10 +1,10 @@
 from flask import Flask, g, render_template, request, url_for, redirect, flash, session
-from datetime import timedelta
-from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns
+from datetime import timedelta, date
+from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns, DeleteBooking
 from application import app, db
 from application.models import CustomerContact, CustomerLogin, Activity, ActivityBooked, Faq
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import desc, func
+from sqlalchemy import desc, func, delete
 
 app.permanent_session_lifetime = timedelta(minutes=60)
 
@@ -99,7 +99,7 @@ def profile():
     return render_template('profile.html', title='profile')
 
 
-@app.route('/book', methods=['GET'])
+@app.route('/book')
 def book():
     activities = db.session.query(Activity).all()
     return render_template('activities.html', title='Book a class', activities=activities)
@@ -114,18 +114,21 @@ def booking():
         if request.method == 'POST':
             if "username" in session:
                 username = session["username"]
-                booked = ActivityBooked(email_address=username,
-                                        date=form.date.data,
-                                        activity_type=form.activity_type.data,
-                                        timeslot=form.timeslot.data)
-                db.session.add(booked)
-                db.session.commit()
-                flash('Thanks for booking!')
-                return redirect(url_for('my_bookings', username=username))
+                if form.date.data > date.today():
+                    booked = ActivityBooked(email_address=username,
+                                            date=form.date.data,
+                                            activity_type=form.activity_type.data,
+                                            timeslot=form.timeslot.data)
+                    db.session.add(booked)
+                    db.session.commit()
+                    flash('Thanks for booking!')
+                    return redirect(url_for('my_bookings', username=username))
+                else:
+                    flash("Cannot book dates in the past.")
     return render_template('booking.html', title='Book Class', form=form)
 
 
-@app.route('/my_bookings')
+@app.route('/my_bookings', methods=['GET', 'POST', 'DELETE'])
 def my_bookings():
     if "username" in session:
         username = session["username"]
@@ -133,7 +136,21 @@ def my_bookings():
                                                           >= func.current_date()).order_by(ActivityBooked.date).all()
         past = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == username, ActivityBooked.date <
                                                        func.current_date()).order_by(ActivityBooked.date).all()
-    return render_template('my_bookings.html', username=username, current=current, past=past, title='My Bookings')
+    form = DeleteBooking()
+    if request.method == "POST":
+        try:
+            booked = request.form.get('booking_id')
+            activity = ActivityBooked.query.filter_by(booking_id=booked).first()
+            db.session.delete(activity)
+            db.session.commit()
+            flash('Your booking has been cancelled.')
+            return redirect(url_for('my_bookings', username=username))
+        except ValueError:
+            flash("The booking cannot be deleted. Please contact our centre for support")
+        except:
+            flash("The booking cannot be deleted. Please contact our centre for support")
+
+    return render_template('my_bookings.html', username=username, current=current, past=past, form=form, title='My Bookings')
 
 
 @app.route('/policy')
@@ -156,7 +173,7 @@ def password_reset():
         except:
             flash('You do not have an account, please sign up below')
 
-    return render_template('password_reset.html', form=form, title='password_reset')
+    return render_template('password_reset.html', form=form, title='Password Reset')
 
 
 @app.route('/contact', methods=['GET', 'POST'])
