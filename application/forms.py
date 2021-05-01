@@ -66,3 +66,9 @@ class DeleteBooking(FlaskForm):
     booking_id = IntegerField('Booking Id', validators=[DataRequired(), Length(min=4, max=25)])
     confirm_id = IntegerField('Confirm Booking Id', validators=[DataRequired(), Length(min=4, max=25)])
     submit = SubmitField('Delete Booking')
+
+
+class DeleteAccount(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    confirm_email = StringField(' Confirm Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Delete Account')

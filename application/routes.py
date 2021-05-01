@@ -1,6 +1,6 @@
 from flask import Flask, g, render_template, request, url_for, redirect, flash, session
 from datetime import timedelta, date
-from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns, DeleteBooking
+from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns, DeleteBooking, DeleteAccount
 from application import app, db
 from application.models import CustomerContact, CustomerLogin, Activity, ActivityBooked, Faq
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -196,3 +196,20 @@ def contact():
 def contact_feedback(email_address):
     comment = Faq.query.filter(Faq.email_address == email_address).first()
     return render_template('contact_feedback.html', comment=comment, title='My Contact')
+
+
+@app.route('/delete_account', methods=['GET', 'POST'])
+def delete_account():
+    form = DeleteAccount()
+    if request.method == "POST":
+        try:
+            email = request.form.get('email')
+            user = CustomerLogin.query.filter_by(email_address=email).first()
+            db.session.delete(user)
+            db.session.commit()
+            flash('Your account has been deleted.')
+            return redirect(url_for('login'))
+        except:
+            flash("This account has already been deleted or it does not exist")
+    return render_template('delete_account.html', form=form, title='Delete Account')
+
