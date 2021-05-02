@@ -6,7 +6,7 @@
 
 {{ url_for('templates', filename='booking.html') }}
 
-{% block title %}Booking{% endblock %}
+{% block title %} Booking {% endblock %}
 
 {% block body_content %}
 
@@ -24,6 +24,13 @@
          <br>
             <dl>
                <dd>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                     <div class="{{ category }}" style="color:#F07167;"> {{ message }}</div>
+                   {% endfor %}
+                    {% endif %}
+                   {% endwith %}
                     <div class="form-row">
                         <div class="centre">
                             {{ form.date.label }} {{ form.date }}

@@ -1,5 +1,6 @@
+import datetime
 from flask import Flask, g, render_template, request, url_for, redirect, flash
-from datetime import timedelta, date
+from datetime import datetime, timedelta, date
 from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns, DeleteBooking, DeleteAccount
 from application import app, db, login_manager
 from application.models import User, Activity, ActivityBooked, Faq
@@ -72,25 +73,28 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
     form = RegistrationForm()
-    if request.method == 'POST':
-        first_name = form.first_name.data,
-        last_name = form.last_name.data,
-        date_of_birth = form.date_of_birth.data,
-        phone_number = form.phone_number.data,
-        email = form.email.data,
-        address_line = form.address.data,
-        postcode = form.postcode.data,
-        city = form.city.data,
-        password = form.password.data
+    try:
+        if request.method == 'POST':
+            first_name = form.first_name.data,
+            last_name = form.last_name.data,
+            date_of_birth = form.date_of_birth.data,
+            phone_number = form.phone_number.data,
+            email = form.email.data,
+            address_line = form.address.data,
+            postcode = form.postcode.data,
+            city = form.city.data,
+            password = form.password.data
 
-        details = User(first_name=first_name, last_name=last_name, email=email, date_of_birth=date_of_birth,
+            details = User(first_name=first_name, last_name=last_name, email=email, date_of_birth=date_of_birth,
                      phone_number=phone_number, address=address_line,
                      postcode=postcode, city=city, password=generate_password_hash(password, method='sha256'))
 
-        db.session.add(details)
-        db.session.commit()
-        flash('Thanks for registering')
-        return redirect(url_for('login'))
+            db.session.add(details)
+            db.session.commit()
+            flash('Thanks for registering')
+            return redirect(url_for('login'))
+    except:
+        flash('An account associated to this email address already exists. Please login or reset your password')
     return render_template('register.html', error=flash, form=form)
 
 
@@ -108,22 +112,46 @@ def book():
     return render_template('activities.html', title='Book a class', activities=activities)
 
 
+# @app.route('/booking', methods=['GET', 'POST'])
+# def booking():
+#     form = BookedActivity()
+#     if current_user.is_authenticated:
+#         if request.method == 'POST':
+#             if form.date.data > date.today():
+#                 result = db.session.query(User, ActivityBooked).filter(User.email==ActivityBooked.email_address,
+#                                                             User.id==current_user.get_id()).first()
+#                 booked = ActivityBooked(email_address=result.ActivityBooked.email_address,
+#                                          date=form.date.data,
+#                                          activity_type=form.activity_type.data,
+#                                          timeslot=form.timeslot.data)
+#                 db.session.add(booked)
+#                 db.session.commit()
+#                 flash('Thanks for booking!')
+#                 return redirect(url_for('my_bookings'))
+#         else:
+#             flash("Please make your selection.")
+#     return render_template('booking.html', title='Book Class', form=form)
+
 @app.route('/booking', methods=['GET', 'POST'])
 def booking():
     form = BookedActivity()
     if current_user.is_authenticated:
         if request.method == 'POST':
-            if form.date.data > date.today():
-                result = db.session.query(User, ActivityBooked).filter(User.email==ActivityBooked.email_address,
-                                                            User.id==current_user.get_id()).first()
+            date_limit = date.today() + datetime.timedelta(days=14)
+            if (form.date.data > date.today()) and (form.date.data <= date_limit):
+                result = db.session.query(User, ActivityBooked).filter(User.email == ActivityBooked.email_address,
+                                                                       User.id == current_user.get_id()).first()
                 booked = ActivityBooked(email_address=result.ActivityBooked.email_address,
-                                         date=form.date.data,
-                                         activity_type=form.activity_type.data,
-                                         timeslot=form.timeslot.data)
+                                        date=form.date.data,
+                                        activity_type=form.activity_type.data,
+                                        timeslot=form.timeslot.data)
                 db.session.add(booked)
                 db.session.commit()
                 flash('Thanks for booking!')
                 return redirect(url_for('my_bookings'))
+            else:
+                flash("Please check your dates.")
+                return redirect(url_for('booking'))
         else:
             flash("Please make your selection.")
     return render_template('booking.html', title='Book Class', form=form)
@@ -202,16 +230,16 @@ def contact_feedback(email_address):
 
 @app.route('/delete_account', methods=['GET', 'POST'])
 def delete_account():
+    if current_user.is_authenticated:
+        account = db.session.query(User).filter(User.id == current_user.get_id()).first()
     form = DeleteAccount()
     if request.method == "POST":
         try:
-            email = request.form.get('email')
-            user = User.query.filter_by(email=email).first()
-            db.session.delete(user)
+            # password = request.form.get('password')
+            db.session.delete(account)
             db.session.commit()
             flash('Your account has been deleted.')
             return redirect(url_for('login'))
         except:
             flash("This account has already been deleted or it does not exist")
     return render_template('delete_account.html', form=form, title='Delete Account')
-
