@@ -46,7 +46,6 @@ def login():
 
         else:
             login_user(user)
-            flash(f'Login successful {user.first_name}', category='success')
 
             return redirect(url_for('dashboard'))
 
