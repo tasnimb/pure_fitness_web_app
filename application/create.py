@@ -5,13 +5,13 @@ db.reflect()
 db.drop_all()
 db.create_all()
 
-testPerson1a = User(first_name='Tasnim', last_name='Begum', email='tasnim.b98@gmail.com', date_of_birth='1998-09-08',
+testPerson1a = User(select_membership = 'Gold',first_name='Tasnim', last_name='Begum', email='tasnim.b98@gmail.com', date_of_birth='1998-09-08',
                     phone_number='07497500204', address='28 London Street', postcode="KT5 8AT",  city="Nottingham",
                     password="sha256$n2JF3o03$9f93108a285f8dc675c9371c14f69dd16758ed5278ae0ca7728c7c1242c6cf88")
-testPerson2a = User(first_name='Dwayne', last_name='Johnson', email='dwayne@fastcars.com', date_of_birth='1972-05-01',
+testPerson2a = User(select_membership = 'Gold',first_name='Dwayne', last_name='Johnson', email='dwayne@fastcars.com', date_of_birth='1972-05-01',
                     phone_number='07946183457',  address='1 The Green', postcode="SE11 5SS",  city="Reading",
                     password="sha256$n2JF3o03$9f93108a285f8dc675c9371c14f69dd16758ed5278ae0ca7728c7c1242c6cf88")
-testPerson3a = User(first_name='Beyonce', last_name='Knowles-Carter', email='beyonce@halo.com',  date_of_birth='1981-09-04',
+testPerson3a = User(select_membership = 'Gold',first_name='Beyonce', last_name='Knowles-Carter', email='beyonce@halo.com',  date_of_birth='1981-09-04',
                     phone_number='07946512396', address='21 Jump Street', postcode="B2P AJ9",  city="Birmingham",
                     password="sha256$n2JF3o03$9f93108a285f8dc675c9371c14f69dd16758ed5278ae0ca7728c7c1242c6cf88")
 

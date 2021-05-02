@@ -292,9 +292,17 @@ margin: auto;
   width: 60%;
   border: 3px outset;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+
 }
 
 a{color:#000;
 font-size:14px;
 font-weight:600;}
+
+
 

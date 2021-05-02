@@ -1,6 +1,6 @@
 import datetime
 from flask import Flask, g, render_template, request, url_for, redirect, flash
-from datetime import datetime, timedelta, date
+from datetime import timedelta, date
 from application.forms import LoginForm, RegistrationForm, BookedActivity, PasswordReset, Qns, DeleteBooking, DeleteAccount
 from application import app, db, login_manager
 from application.models import User, Activity, ActivityBooked, Faq
@@ -75,6 +75,7 @@ def register():
     form = RegistrationForm()
     try:
         if request.method == 'POST':
+            membership = form.select_membership.data,
             first_name = form.first_name.data,
             last_name = form.last_name.data,
             date_of_birth = form.date_of_birth.data,
@@ -85,7 +86,7 @@ def register():
             city = form.city.data,
             password = form.password.data
 
-            details = User(first_name=first_name, last_name=last_name, email=email, date_of_birth=date_of_birth,
+            details = User(select_membership=membership,first_name=first_name, last_name=last_name, email=email, date_of_birth=date_of_birth,
                      phone_number=phone_number, address=address_line,
                      postcode=postcode, city=city, password=generate_password_hash(password, method='sha256'))
 
@@ -133,6 +134,7 @@ def book():
 #     return render_template('booking.html', title='Book Class', form=form)
 
 @app.route('/booking', methods=['GET', 'POST'])
+@login_required
 def booking():
     form = BookedActivity()
     if current_user.is_authenticated:
@@ -158,6 +160,7 @@ def booking():
 
 
 @app.route('/my_bookings', methods=['GET', 'POST', 'DELETE'])
+@login_required
 def my_bookings():
     if current_user.is_authenticated:
         result = db.session.query(User, ActivityBooked).filter(User.email == ActivityBooked.email_address,
@@ -189,6 +192,7 @@ def policy():
 
 
 @app.route('/password_reset', methods=['GET', 'POST'])
+@login_required
 def password_reset():
     form = PasswordReset()
     if request.method == 'POST':
@@ -224,11 +228,12 @@ def contact():
 
 @app.route('/contact_feedback/<email_address>')
 def contact_feedback(email_address):
-    comment = Faq.query.filter(Faq.email_address == email_address).first()
+    comment = Faq.query.filter(Faq.email_address == email_address).order_by(Faq.faq_id.desc()).first()
     return render_template('contact_feedback.html', comment=comment, title='My Contact')
 
 
 @app.route('/delete_account', methods=['GET', 'POST'])
+@login_required
 def delete_account():
     if current_user.is_authenticated:
         account = db.session.query(User).filter(User.id == current_user.get_id()).first()

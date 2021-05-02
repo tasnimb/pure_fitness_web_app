@@ -17,6 +17,7 @@ def unauthorized():
 class User(UserMixin, db.Model):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
+    select_membership = db.Column(db.String(30), nullable=False,unique=False)
     first_name = db.Column(db.String(30), nullable=False,unique=False)
     last_name = db.Column(db.String(30), nullable=False,unique=False)
     email = db.Column(db.String(40),unique=True,nullable=False)
@@ -38,7 +39,7 @@ class Activity(db.Model):
 
 
 class ActivityBooked(db.Model):
-    __tablename__ = 'BookActivity'
+    __tablename__ = 'Activity Booked'
     booking_id = db.Column(db.Integer, primary_key=True)
     email_address = db.Column(db.String(50))
     date = db.Column(db.Date, nullable=False)

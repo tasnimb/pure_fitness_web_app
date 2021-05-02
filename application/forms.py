@@ -12,6 +12,8 @@ gender = ('Female', 'Male')
 
 
 class RegistrationForm(FlaskForm):
+    membership_types = [('Bronze', 'Bronze'), ('Silver', 'Silver'), ('Gold', 'Gold')]
+    select_membership = SelectField('Membership Type', validators=[DataRequired()], choices=membership_types)
     first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=20)])
     last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email(message='Enter a valid email')])
