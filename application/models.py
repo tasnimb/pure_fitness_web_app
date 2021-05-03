@@ -39,7 +39,7 @@ class Activity(db.Model):
 
 
 class ActivityBooked(db.Model):
-    __tablename__ = 'Activity Booked'
+    __tablename__ = 'ActivityBooked'
     booking_id = db.Column(db.Integer, primary_key=True)
     email_address = db.Column(db.String(50))
     date = db.Column(db.Date, nullable=False)

@@ -161,10 +161,9 @@ def booking():
 @app.route('/my_bookings', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def my_bookings():
+    result = db.session.query(User).filter(User.id == current_user.get_id()).first()
+    email_address = result.email
     if current_user.is_authenticated:
-        result = db.session.query(User, ActivityBooked).filter(User.email == ActivityBooked.email_address,
-                                                               User.id == current_user.get_id()).first()
-        email_address = result.ActivityBooked.email_address
         current = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == email_address, ActivityBooked.date
                                                           >= func.current_date()).order_by(ActivityBooked.date).all()
         past = db.session.query(ActivityBooked).filter(ActivityBooked.email_address == email_address, ActivityBooked.date <
@@ -172,15 +171,22 @@ def my_bookings():
 
     form = DeleteBooking()
     if request.method == "POST":
-        try:
-            booked = request.form.get('booking_id')
-            activity = ActivityBooked.query.filter_by(booking_id=booked).first()
-            db.session.delete(activity)
-            db.session.commit()
-            flash('Your booking has been cancelled.')
-            return redirect(url_for('my_bookings'))
-        except:
-            flash("The booking cannot be deleted. Please contact our centre for support")
+        if (form.booking_id.data != form.confirm_id.data):
+            flash("The Confirm Booking ID is different. Please ensure Booking ID numbers are the same.")
+        else:
+            try:
+                booked = request.form.get('booking_id')
+                activity = db.session.query(User, ActivityBooked).filter(User.email == ActivityBooked.email_address,
+                                                                        User.id == current_user.get_id(),
+                                                                        ActivityBooked.booking_id==booked,
+                                                                        ActivityBooked.date >= func.current_date()).first()
+                activity_to_delete = ActivityBooked.query.filter_by(booking_id=activity.ActivityBooked.booking_id).first()
+                db.session.delete(activity_to_delete)
+                db.session.commit()
+                flash('Result! Your booking has been cancelled.')
+                return redirect(url_for('my_bookings'))
+            except Exception as error:
+                flash("Booking ID error. Please check the ID or contact our centre for support")
 
     return render_template('my_bookings.html', current=current, past=past, form=form, title='My Bookings')
 
