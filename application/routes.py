@@ -140,9 +140,8 @@ def booking():
         if request.method == 'POST':
             date_limit = date.today() + datetime.timedelta(days=14)
             if (form.date.data > date.today()) and (form.date.data <= date_limit):
-                result = db.session.query(User, ActivityBooked).filter(User.email == ActivityBooked.email_address,
-                                                                       User.id == current_user.get_id()).first()
-                booked = ActivityBooked(email_address=result.ActivityBooked.email_address,
+                result = db.session.query(User).filter(User.id == current_user.get_id()).first()
+                booked = ActivityBooked(email_address=result.email,
                                         date=form.date.data,
                                         activity_type=form.activity_type.data,
                                         timeslot=form.timeslot.data)
