@@ -95,7 +95,7 @@ def register():
             return redirect(url_for('login'))
     except:
         flash('An account associated to this email address already exists. Please login or reset your password')
-    return render_template('register.html', error=flash, form=form)
+    return render_template('register_2.html', error=flash, form=form)
 
 
 @app.route('/profile')
@@ -196,7 +196,6 @@ def policy():
 
 
 @app.route('/password_reset', methods=['GET', 'POST'])
-@login_required
 def password_reset():
     form = PasswordReset()
     if request.method == 'POST':

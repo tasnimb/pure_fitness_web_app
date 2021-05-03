@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{{ url_for('templates', filename='register_2.html') }}
+
+{% block title %}register2{% endblock %}
+
+{% block body_content %}
+<head>
+<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+</head>
+<br>
+<br>
+<div class="text-center">
+
+<main class="form-signin">
+  <form class="container" method="POST" action="{{ url_for('register') }}">
+      <div class="row justify-content-center">
+          <div class="col-md-8 col-12">
+                 <img class="mb-4" src="/static/images/pf_logo.jpg" alt="GymFitnessLogo" width="100" height="100">
+          </div>
+      <div class="col-md-8 col-12">
+      <h1 class="h3 mb-3 fw-normal">Register Here</h1>
+        </div>
+      </div>
+
+   <div class="row justify-content-center">
+  <div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.select_membership.label }} {{ form.select_membership }}
+              <br>
+    </div>
+    </div>
+       <div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.first_name.label }} {{ form.first_name }}
+              <br>
+    </div>
+    </div>
+      <div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.last_name.label }} {{ form.last_name }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.date_of_birth.label }} {{ form.date_of_birth }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.email.label }} {{ form.email(placeholder="example@getfit.com") }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.phone_number.label }} {{ form.phone_number }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.address.label }} {{ form.address }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.postcode.label }} {{ form.postcode }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.city.label }} {{ form.city }}
+              <br>
+    </div>
+    </div>
+<div class="col-md-8 col-12 mb-2 ">
+    <div class="form-floating">
+              {{ form.password.label }} {{ form.password }}
+              <br>
+    </div>
+    </div>
+      <div class="col-md-8 col-12 mb-2">
+
+       <div class="form-floating ">
+      {{ form.confirm_password.label }} {{ form.confirm_password }}
+              <br>
+    </div>
+      </div>
+
+  </div>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-12">
+          <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-primary" type="submit">Register</button>
+    <div class="border-top pt-3">
+        <small class="">
+            Already have an account <a class="ml-2" href="{{ url_for('login') }}">Login here</a>
+        </small>
+        <br>
+    </div>
+    </div>
+</div>
+
+    <p class="mt-5 mb-3">&copy; Gym Fitness 2021</p>
+  </form>
+</main>
+</div>
+
+{% endblock %}
