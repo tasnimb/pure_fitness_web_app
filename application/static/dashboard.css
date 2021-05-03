@@ -9,7 +9,7 @@ font-family: 'Montserrat', sans-serif;
 /*headings starts*/
 h1,h2,h3,h4,h5{
 font-weight:700;
-color:#24252A;
+color:#F07167;
 
 }
 
@@ -83,6 +83,9 @@ background-color: rgba(144,224,239,1);
 max-height:90px;
 
 };
+
+
+
 
 .navbar-toggler span + span + span{
 
@@ -457,3 +460,6 @@ margin-left:20px;
 padding:20px 20px;
 
 }
+
+
+

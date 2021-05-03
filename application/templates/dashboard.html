@@ -22,7 +22,7 @@
 
 
 {% block body_content %}
-<div class="container-fluid quote-container" >
+<div class="container-fluid d-none d-md-block quote-container" >
     <div class="row justify-content-center">
 
 
@@ -153,8 +153,9 @@
         </div>
 
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-3 col-12 member-benefit">
+    <div class="container-fluid justify-content-evenly">
+    <div class="row justify-content-evenly">
+        <div class="col-xs col-md-3 member-benefit">
             <figure>
             <img src="{{url_for('static',filename='images/benefit1.png')}}" alt="" width="250px" height="250px">
             <figcaption class="text-center font-weight-600"><strong>USE CODE: 'GIVEME30' in-store or online</strong></figcaption>
@@ -162,29 +163,30 @@
 
         </div>
 
-         <div class="col-md-3 col-12 member-benefit">
+         <div class="col-xs col-md-3 member-benefit">
             <figure>
-            <img src="{{url_for('static',filename='images/benefit2.png')}}" alt="" width="250px" height="250px">
+            <img src="{{url_for('static',filename='images/ben22.png')}}" alt="" width="250px" height="250px">
             <figcaption class="text-center font-weight-600"><strong>USE CODE: 'PROTEIN30' online</strong></figcaption>
             </figure>
 
         </div>
 
-        <div class="col-md-3 col-12 member-benefit">
+        <div class="col-xs col-md-3 member-benefit">
             <figure>
             <img src="{{url_for('static',filename='images/benefit3.png')}}" alt="" width="250px" height="250px">
             <figcaption class="text-center font-weight-600"><strong>USE CODE: '10HELLO' online only</strong></figcaption>
             </figure>
         </div>
 
-        <div class="col-md-3 col-12 member-benefit">
+        <div class="col-xs col-md-3 member-benefit">
             <figure>
-            <img src="{{url_for('static',filename='images/benefit4.png')}}" alt="" width="250px" height="250px" >
+            <img src="{{url_for('static',filename='images/ben4.jpg')}}" alt="" width="250px" height="250px" >
             <figcaption class="text-center font-weight-600"><strong>USE CODE: 'GIVEMETHIRTY' in-store or online</strong></figcaption>
             </figure>
         </div>
 
     </div>
+
 </div>
 
 
