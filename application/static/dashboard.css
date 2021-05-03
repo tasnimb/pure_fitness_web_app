@@ -15,7 +15,6 @@ color:#24252A;
 
 /*headings end*/
 
-
 /*navbar toggler start*/
 .navbar-toggler{background-color:#0096c7;
 border:none;
@@ -57,7 +56,7 @@ background-color:rgba(0, 150, 199, 3);
 /*logout button start*/
 .btn{
 margin-left: 20px;
-padding: 30px 40px;
+padding: 9px 25px;
 background-color:#0096c7;
 border: none;
 border-radius: 50px;
@@ -70,6 +69,8 @@ font-weight:800;
 
 .btn:hover {
 background-color: rgba(0, 150, 199, 3);
+padding:15px 30px;
+color:#fff;
 
 
 }
@@ -78,7 +79,10 @@ background-color: rgba(0, 150, 199, 3);
 
 /*navbar and links start*/
 .navbar{
-background-color: #90e0ef};
+background-color: rgba(144,224,239,1);
+max-height:90px;
+
+};
 
 .navbar-toggler span + span + span{
 
@@ -89,17 +93,18 @@ background-color: #90e0ef};
 }
 
 .navbar-expand-lg .navbar-nav .nav-link{
-    font-weight:800;
-    font-size:26px;
+    font-weight:700;
+    font-size:18px;
     position:relative;
     color:#24252A;
     text-decoration: none;
+    border:none;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link:hover{
     border-top: 2px solid rgba(0, 136, 169, 0.8);
     color:#ECF0F1;
-    font-size: 18px;
+    font-size: 20px;
 }
 .navbar-expand-lg .navbar-nav .nav-link:active{
     border-top:2px solid rgba(0, 136, 169, 0.8);
@@ -113,15 +118,23 @@ text-decoration:none;
 color:#24252A;
 font-size:30px;
 font-weight:800;
+font-family: 'Poppins', sans-serif;
 }
 
+.navbar .navbar-brand:hover{
+color:#fff;
+}
 .nav-item{margin-right: 20px;}
+
 
 /*navbar and links end*/
 
 /*footer start*/
 
+/*footer start*/
 
+
+.footer{max-height:70px;}
 
 .footer-item,.social-items{
 list-style:none;
@@ -131,20 +144,61 @@ display:inline-block;
 
 .footer li a{
 text-decoration:none;
-color:#fff;
+color:#000;
 margin-left:20px;
 margin-right:20px;
+font-weight:700;
+}
+
+.footer li a:hover{
+color:#fff;
+
 }
 
 .outer-footer{
 display:flex;
 padding: 10px;
 text-align: center;
-font-size: 10px;
-color:#fff;
+font-size: 12px;
+color:#000;
+font-weight:700;
 
 }
+.outer-footer:hover{
+color:#fff;
+}
+/*footer end*/
 
+
+/*delete account and change password forms start*/
+.reset-container{
+    margin: auto;
+  width: 40%;
+  height:70vh;
+  border: inherit;
+  padding: 10px 10px 10px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  font-weight:700;
+  color:#000;
+  border-radius:10px;
+background-color:rgba(0, 150, 199,0.3);
+
+}
+.reset-container:hover{
+box-shadow: 0 0 40px 20px rgba(0,0,0,0.3);
+}
+ .reset-label {
+ border:2px solid black;
+ padding:9px;
+
+ }
+
+
+/*delete account and change password forms end*/
 
 /*carousel start*/
 

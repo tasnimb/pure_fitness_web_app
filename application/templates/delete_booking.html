@@ -1,0 +1,30 @@
+{% if current_user.is_authenticated %}
+    {% extends "logged_layout.html" %}
+{%else%}
+    {% extends "layout.html" %}
+{% endif %}
+
+{{ url_for('templates', filename='Password_reset.html') }}
+
+{% block title %}Password_reset{% endblock %}
+
+{% block body_content %}
+
+<form method="POST" action="{{ url_for('delete_booking') }}">
+<div class="container form-container">
+<form class="needs-validation" novalidate>
+
+  <div class="form-row">
+     <div class="col-md-8 mb-3">
+
+         {{ form.booking_id.label }} {{ form.booking_id }}
+     </div>
+    <div class="col-md-8 mb-3">
+
+        {{ form.confirm_id.label}} {{ form.confirm_id}}
+
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+
+{% endblock %}
