@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
 
 body{
-background-color:#24252A;
+background-color:rgba(202, 240, 248);
 font-family: 'Montserrat', sans-serif;
 }
 /*body end*/
@@ -450,16 +450,10 @@ margin:auto;
 padding:20px 20px;
 margin-top:20px;
 margin-bottom:20px;
+background-color:#fff;
 }
 
-.member-benefit{
-border:1px outset;
-box-shadow:rgba(0,0,0,0.3);
-border-radius:50px;
-margin-left:20px;
-padding:20px 20px;
 
-}
 
 
 
