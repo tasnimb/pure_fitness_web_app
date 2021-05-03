@@ -308,13 +308,18 @@ body {
 
 }
 
-.w-20 btn btn-lg btn-primary {
+/* .w-20 btn btn-lg btn-primary {
 color: rgb(0,129,167);
 height: 20px;
 }
+*/
 
 label {
     display: text-center;
+    font-weight: 600;
+    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre;
 }
 
 .form-container {
@@ -325,14 +330,25 @@ margin: auto;
   display: flex;
   flex-direction: column;
   justify-content:center;
-  text-align: center;
+  text-align: left;
   align-items: center;
+  background-color:#CAF0F8;
 
 }
 
-a{color:#000;
+/* a{color:#000;
 font-size:14px;
 font-weight:600;}
+*/
+
+.h3 mb-3 fw-normal{
+  text-align: center;
+
+}
+
+.form-check-label {
+text-align: center;
+}
 
 
 
