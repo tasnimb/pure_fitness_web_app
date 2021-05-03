@@ -84,7 +84,7 @@ activity_cycling = Activity(activity_type="Cycling",
                             " of calories. This class focuses on endurance, strength, intervals, high intensity and "
                             "recovery Using indoor stationary bikes.",
                             duration="45 minutes",
-                            instructor_name="Muhammad Begum")
+                            instructor_name="Muhammad Ali")
 
 activity_swim = Activity(activity_type="Swim",
                          activity_description="Water aerobics will help to build cardiovascular strength and "

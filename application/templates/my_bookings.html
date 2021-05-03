@@ -1,13 +1,18 @@
-{% extends "layout.html" %}
+{% if current_user.is_authenticated %}
+    {% extends "logged_layout.html" %}
+{%else%}
+    {% extends "layout.html" %}
+{% endif %}
 
 {{ url_for('templates', filename='my_bookings.html') }}
 
 {% block title %}MyBookings{% endblock %}
 
 {% block body_content %}
+<body style="background-color:#CAF0F8;">
 <div class="row justify-content-center">
         <div class="col-md-8 col-12">
-            <h2>Current bookings</h2>
+            <h2 style="color:black;">Current bookings</h2>
                 <p>Your current bookings are shown in the table below.</p>
         </div>
       </div>
@@ -36,7 +41,7 @@
   <form class="container" method="POST" action="{{ url_for('my_bookings') }}">
       <div class="row justify-content-center">
           <div class="col-md-8 col-12">
-              <h1 class="h3 mb-3 fw-normal">Cancel a booking</h1>
+              <h1 style="color:black;" class="h3 mb-3 fw-normal"><strong>Cancel a booking</strong></h1>
         </div>
       </div>
 
@@ -66,7 +71,7 @@
 <hr>
       <div class="row justify-content-center">
         <div class="col-md-8 col-12">
-            <h2>Past bookings</h2>
+            <h2 style="color:black;" >Past bookings</h2>
                 <p>The table below displays any previous classes you have attended.</p>
         </div>
       </div>
@@ -89,15 +94,16 @@
     </tbody>
 </table>
 </div>
-<br>
-    <a href="{{ url_for('booking') }}">
 
-   <button class="btn btn-primary">Book</button>
-</a>
+<br>
+
 <div class="border-top pt-3">
         <small class="text-muted">
             <a class="ml-2" href="{{ url_for('dashboard') }}">Dashboard</a>
         </small>
 </div>
-
+<div>
+        <img style="position:relative; left:0px; right:0px; width:100%;" src="static/images/longimage.jpg" alt="spinning class">
+    </div>
+</body>
 {% endblock %}

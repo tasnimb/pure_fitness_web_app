@@ -24,13 +24,13 @@
          <br>
             <dl>
                <dd>
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for message in messages %}
-                     <div class="{{ category }}" style="color:#F07167;"> {{ message }}</div>
-                   {% endfor %}
-                    {% endif %}
-                   {% endwith %}
+<!--                    {% with messages = get_flashed_messages(with_categories=true) %}-->
+<!--                        {% if messages %}-->
+<!--                            {% for message in messages %}-->
+<!--                     <div class="{{ category }}" style="color:#F07167;"> {{ message }}</div>-->
+<!--                   {% endfor %}-->
+<!--                    {% endif %}-->
+<!--                   {% endwith %}-->
                     <div class="form-row">
                         <div class="centre">
                             {{ form.date.label }} {{ form.date }}
