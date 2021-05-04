@@ -138,23 +138,22 @@ def booking():
     form = BookedActivity()
     if current_user.is_authenticated:
         if request.method == 'POST':
-            date_limit = date.today() + datetime.timedelta(days=14)
-            if (form.date.data > date.today()) and (form.date.data <= date_limit):
-                result = db.session.query(User).filter(User.id == current_user.get_id()).first()
-                booked = ActivityBooked(email_address=result.email,
-                                        date=form.date.data,
-                                        activity_type=form.activity_type.data,
-                                        timeslot=form.timeslot.data)
-                db.session.add(booked)
-                db.session.commit()
-                flash('Thanks for booking!')
-                return redirect(url_for('my_bookings'))
-            else:
+            try:
+                date_limit = date.today() + datetime.timedelta(days=14)
+                if (form.date.data > date.today()) and (form.date.data <= date_limit):
+                    result = db.session.query(User).filter(User.id == current_user.get_id()).first()
+                    booked = ActivityBooked(email_address=result.email,
+                                            date=form.date.data,
+                                            activity_type=form.activity_type.data,
+                                            timeslot=form.timeslot.data)
+                    db.session.add(booked)
+                    db.session.commit()
+                    flash('Thanks for booking!')
+                    return redirect(url_for('my_bookings'))
+            except:
                 flash("Please check your dates.")
                 return redirect(url_for('booking'))
-        else:
-            flash("Please make your selection.")
-    return render_template('booking.html', title='Book Class', form=form)
+        return render_template('booking.html', title='Book Class', form=form)
 
 
 @app.route('/my_bookings', methods=['GET', 'POST', 'DELETE'])
@@ -170,7 +169,7 @@ def my_bookings():
 
     form = DeleteBooking()
     if request.method == "POST":
-        if (form.booking_id.data != form.confirm_id.data):
+        if form.booking_id.data != form.confirm_id.data:
             flash("The Confirm Booking ID is different. Please ensure Booking ID numbers are the same.")
         else:
             try:
@@ -196,6 +195,7 @@ def policy():
 
 
 @app.route('/password_reset', methods=['GET', 'POST'])
+@login_required
 def password_reset():
     form = PasswordReset()
     if request.method == 'POST':

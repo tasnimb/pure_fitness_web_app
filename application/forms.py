@@ -72,6 +72,6 @@ class DeleteBooking(FlaskForm):
 
 
 class DeleteAccount(FlaskForm):
-    password = StringField('Password', validators=[DataRequired(), Email()])
-    confirm_password= StringField(' Confirm Password', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Email()])
+    confirm_password= PasswordField(' Confirm Password', validators=[DataRequired(), Email()])
     submit = SubmitField('Delete Account')
